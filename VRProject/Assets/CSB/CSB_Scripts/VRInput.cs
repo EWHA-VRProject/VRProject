@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // PC, Oculus 환경 모두 적용하기위함
-public static class ARVRInput
+public static class VRInput
 {
     // 하나의 명령어로 PC, Oculus 환경 모두 사용하기 위해 통일
 #if PC
