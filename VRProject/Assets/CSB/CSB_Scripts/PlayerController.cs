@@ -67,8 +67,12 @@ public class PlayerController : MonoBehaviour
             UnGrab();
         }
 
+        // 최종 선택 관련 =========
+        MakeAChoice();
+
     }
 
+    // 타겟 잡기 관련 함수 ========================================================
     void UnGrab()
     {
         //
@@ -89,7 +93,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitInfo;
             if(Physics.Raycast(ray, out hitInfo))   // 만약 레이어가 target이면
             {
-                if(hitInfo.transform.CompareTag("Target"))
+                if(hitInfo.transform.CompareTag("Target") || hitInfo.transform.CompareTag("Answer"))
                 {
                     // 감옥으로
                     isGrab = false;
@@ -116,8 +120,27 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
+        }
+    }
 
-
+    // 최종 선택 관련 함수 ================================
+    void MakeAChoice()
+    {
+        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
+        {
+            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // 레이 쏘기
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                if (hitInfo.transform.CompareTag("Answer")) // 태그가 "Answer"이면
+                {
+                    print("정답");
+                }
+                else if(hitInfo.transform.CompareTag("Target"))
+                {
+                    print("실패");
+                }
+            }
         }
     }
 }
