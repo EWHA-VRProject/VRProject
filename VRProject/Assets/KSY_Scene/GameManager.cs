@@ -15,11 +15,14 @@ public class GameManager : MonoBehaviour
     //public Target target1;
     //public Target target2;
     //public Target target3;
+    public bool foundAll;
     public bool isPlaying;
     public int maxPlayTime;
 
     public GameObject startPanel;
     public GameObject gamePanel;
+    public GameObject successPanel;
+    public GameObject failPanel;
     public TMP_Text stageTxt;
     public TMP_Text playTimeTxt;
     public GameObject targetBtn1;
@@ -29,9 +32,12 @@ public class GameManager : MonoBehaviour
     public Image targetImg2;
     public Image targetImg3;
     
+    
     private bool toggle1 =false;
     private bool toggle2 =false;
     private bool toggle3 =false;
+
+    public TMP_Text playTimeResultTxt;
 
     public Sprite[] images;
 
@@ -40,10 +46,15 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameStart(){
+        playTime=0;
         startPanel.SetActive(false);
         gamePanel.SetActive(true);
+        successPanel.SetActive(false);
+        failPanel.SetActive(false);
+        targetImg1.gameObject.SetActive(false);
+        targetImg2.gameObject.SetActive(false);
+        targetImg3.gameObject.SetActive(false);
         isPlaying=true;
-        //player.gameObject.SetActive(true);
 
 
         List<int> numbersList = new List<int>();
@@ -115,8 +126,11 @@ public class GameManager : MonoBehaviour
     }
     
     void Start() {
+        stage=1;
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
+        successPanel.SetActive(false);
+        failPanel.SetActive(false);
         targetImg1.gameObject.SetActive(false);
         targetImg2.gameObject.SetActive(false);
         targetImg3.gameObject.SetActive(false);
@@ -126,7 +140,21 @@ public class GameManager : MonoBehaviour
         if(isPlaying){
             playTime+=Time.deltaTime;
         }
-        
+        if(isPlaying && playTime>=maxPlayTime){
+            isPlaying=false;
+            gamePanel.SetActive(false);
+            failPanel.SetActive(true);
+        }
+        if(foundAll){
+            isPlaying=false;
+            gamePanel.SetActive(false);
+            successPanel.SetActive(true);
+            int hour=(int)(playTime/3600);
+            int min=(int)(playTime-hour*3600)/60;
+            int second=(int)(playTime%60);
+            playTimeResultTxt.text=string.Format("{0:00}", min)+":"+string.Format("{0:00}", second);
+            foundAll=false;
+        }
     }
 
     void LateUpdate(){
@@ -139,6 +167,13 @@ public class GameManager : MonoBehaviour
         int maxSecond=(int)(maxPlayTime%60);
 
         playTimeTxt.text=string.Format("{0:00}", min)+":"+string.Format("{0:00}", second)+"/"+string.Format("{0:00}", maxMin)+":"+string.Format("{0:00}", maxSecond);
+        
+    }
+    public void nextButton(){
+        if(stage<5){
+            stage+=1;
+        }
+        GameStart();
         
     }
     public void ShowTarget1(){
