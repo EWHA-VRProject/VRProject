@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     void UnGrab()
     {
         //
-        if(VRInput.GetUp(VRInput.Button.HandTrigger, VRInput.Controller.RController))
+        if(VRInput.GetUp(VRInput.Button.One, VRInput.Controller.RController))
         {
             isGrab = false;
             target.GetComponent<Rigidbody>().isKinematic = false;
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     // ≈∏∞Ÿ ¿‚±‚ - layer∞° target¿œ ∞ÊøÏ ∞®ø¡¿∏∑Œ, ∏∏æ‡ ∞®ø¡¿Ã ¥Ÿ √°¿∏∏È ∞®ø¡¿Ã ¥Ÿ √°¥Ÿ∞Ì æÀ∑¡¡‹
     void Grab()
     {
-        if (VRInput.GetDown(VRInput.Button.HandTrigger, VRInput.Controller.RController))
+        if (VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RController))
         {
             Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ∑π¿Ã ΩÓ±‚
             RaycastHit hitInfo;
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
     bool isPrison = false;
     void GoTOThePrison()
     {
-        if(VRInput.GetDown(VRInput.Button.HandTrigger, VRInput.Controller.LController))
+        if(VRInput.GetDown(VRInput.Button.One, VRInput.Controller.LController))
         {
             if (!isPrison)
             {
