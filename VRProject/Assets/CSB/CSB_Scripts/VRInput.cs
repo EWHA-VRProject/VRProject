@@ -251,6 +251,48 @@ public static class VRInput
 #endif
     }
 
+    // 레이저 관련. 컨트롤러 또는 마우스가 가리키는 방향
+    // ray를 쏘다가 물체에 맞으면 라인렌더러(crosshair) 그려주기
+#if PC
+    static Vector3 defaultScale = Vector3.one * 0.02f;
+#else
+    static Vector3 defaultScale = Vector3.one * 0.005f;
+#endif
+    public static void LaserPoint(Transform crosshair, bool isHand = true, Controller hand = Controller.RController)
+    {
+        Ray ray;
+        if(isHand)
+        {
+#if PC
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//#elif Oculus
+
+            if(hand == Controller.RController)
+            {
+                ray = new Ray(RHandPosition, RHandDirection);
+            }
+            else
+            {
+                ray = new Ray(LHandPosition, LHandDirection);
+            }
+#endif
+            Plane plane = new Plane(Vector3.up, 0);
+            float distance = 0;
+
+            if (plane.Raycast(ray, out distance))
+            {
+                // linerenderer 그리기
+                // crosshair
+                crosshair.position = ray.GetPoint(distance);
+                crosshair.forward = -Camera.main.transform.forward;
+                crosshair.localScale = defaultScale * Mathf.Max(1, distance);
+
+            }
+        }
+
+
+    }
+
 }
 
 

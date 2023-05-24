@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     GameObject target;
 
+    // 초점 관련 ==========================
+    public Transform crosshair;
 
     void Start()
     {
@@ -30,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 레이저 발사 관련 ======================================
+        // 충돌한 물체가 있으면 레이저 발사 (레이저는 마우스 또는 컨트롤러가 가리키는 방향으로 생성)
+        VRInput.LaserPoint(crosshair);
+
+
         // 상하좌우 이동 관련 ==================================
         float h = VRInput.GetAxis("Horizontal");
         float v = VRInput.GetAxis("Vertical");
@@ -69,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
         // 최종 선택 관련 =========
         MakeAChoice();
+
+        GoTOThePrison();
 
     }
 
@@ -140,6 +149,26 @@ public class PlayerController : MonoBehaviour
                 {
                     print("실패");
                 }
+            }
+        }
+    }
+
+    // 감옥 이동 관련 ===================
+    public GameObject prisonPoint;
+    bool isPrison = false;
+    void GoTOThePrison()
+    {
+        if(VRInput.GetDown(VRInput.Button.HandTrigger, VRInput.Controller.LController))
+        {
+            if (!isPrison)
+            {
+                this.gameObject.transform.position = prisonPoint.transform.position;
+                isPrison = true;
+            }
+            else
+            {
+                this.gameObject.transform.position = new Vector3(0, 1, 0);
+                isPrison = false;
             }
         }
     }
