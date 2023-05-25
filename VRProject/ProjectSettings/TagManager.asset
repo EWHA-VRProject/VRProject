@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - waypoint
+  - pickuppoint
+  - stealingpoint
+  - sittingpoint
+  - find
   layers:
   - Default
   - TransparentFX

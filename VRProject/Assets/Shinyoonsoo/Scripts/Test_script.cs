@@ -176,11 +176,13 @@ public class Test_script : MonoBehaviour
         yield return new WaitForSeconds(0);
 
         agent.speed = 0;
+        ani.SetInteger("legs", 0);
+        ani.SetInteger("arms", 0);
         yield return new WaitForSeconds(10); //10초 동안 멈춰놓음
 
         playerTouched = false;        
         destermine_new_aim = false;
-        StopCoroutine(pickup_start);
+        
     }
 
     public bool ready;
@@ -194,7 +196,7 @@ public class Test_script : MonoBehaviour
         }
 
      
-        if (Vector3.Distance(transform.position,player.position) < 0.25f) // 플레이어와 닿는 경우
+        if (Vector3.Distance(transform.position,player.position) < 0.5f) // 플레이어와 닿는 경우
         {
             Debug.Log("Touched"); // 플레이어와 터치되었다고 로그에 띄워줌
             playerTouched = true; // 플레이어와 터치되었다고 표지 켜줌
@@ -203,7 +205,6 @@ public class Test_script : MonoBehaviour
         if(playerTouched) // 만약 플레이어가 터치했다면
         {
             agent.speed = 0;
-            in_stop = true;
             stop_start = StartCoroutine(stop_execute()); // 멈춤 작업 실행
         }
         

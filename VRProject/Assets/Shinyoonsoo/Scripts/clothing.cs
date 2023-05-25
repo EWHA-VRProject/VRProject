@@ -551,7 +551,7 @@ public class clothing : MonoBehaviour
 
         // determing      suit/ normal cloth to wear
 
-
+        // 수트 입거나 아니면 상하의 입음 (도둑 제외 모두 헤어/ 콧수염 들어감)
         if (suit_or_cloth == 0)
         {
             // suits
@@ -674,7 +674,7 @@ public class clothing : MonoBehaviour
 
                     roober_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = roober_suit_texture;
 
-
+                // 도둑 수트의 경우에는 헤어나 콧수염 안들어감
                 hair_a.SetActive(false);
                 hair_b.SetActive(false);
                 hair_c.SetActive(false);
@@ -885,5 +885,13 @@ public class clothing : MonoBehaviour
         }
         
     }
-
+    /*
+    private void Update() {
+        //다른 게임오브젝트가 상호작용 되었을 때
+        //suit 가 아닌 경우에만 옷 변경 가능함
+        //갖다 댄 오브젝트의 태그 이용(Collider의 istrigger이용) -> 종류 판단 (collider.gameObject.tag)
+        //activeInHierarchy 를 이용하여 해당 구성이 active상태인 지 확인 -> 아니라면 active가부에 따라 activate하고 다른 구성 deactivate함
+        // active상태라면 텍스처 변경함
+    }
+    */
 }
