@@ -130,7 +130,7 @@ public class clothing : MonoBehaviour
     public Texture worker_suit_texture;
 
 
-    public Texture[] glasses_texture;
+    public Texture[] glasses_textures;
     public Texture[] jacket_textures;
     public Texture[] pullover_textures;
     public Texture[] scarf_textures;
@@ -770,9 +770,9 @@ public class clothing : MonoBehaviour
             {
                 glasses.SetActive(true);
 
-                int texture_choose = UnityEngine.Random.Range(0, 6);
+                int glasses_texture = UnityEngine.Random.Range(0, 6);
 
-                glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_texture[texture_choose];
+                glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_textures[glasses_texture];
             }
 
             int chain = UnityEngine.Random.Range(0, 3);
@@ -781,27 +781,27 @@ public class clothing : MonoBehaviour
             {
                 chain1.SetActive(true);
 
-                int textures = UnityEngine.Random.Range(0, 4);
+                int chain1_texture = UnityEngine.Random.Range(0, 4);
 
-                chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[textures];
+                chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[chain1_texture];
 
             }
             if(chain == 1)
             {
                 chain2.SetActive(true);
 
-                int textures = UnityEngine.Random.Range(0, 3);
+                int chain2_texture = UnityEngine.Random.Range(0, 3);
 
-                chain2.GetComponent<Renderer>().materials[0].mainTexture = chain2_textures[textures];
+                chain2.GetComponent<Renderer>().materials[0].mainTexture = chain2_textures[chain2_texture];
 
             }
             if(chain == 2)
             {
                 chain3.SetActive(true);
 
-                int textures = UnityEngine.Random.Range(0, 3);
+                int chain3_texture = UnityEngine.Random.Range(0, 3);
 
-                chain3.GetComponent<Renderer>().materials[0].mainTexture = chain3_textures[textures];
+                chain3.GetComponent<Renderer>().materials[0].mainTexture = chain3_textures[chain3_texture];
 
             }
 
@@ -811,9 +811,9 @@ public class clothing : MonoBehaviour
             {
                 scarf.SetActive(true);
 
-                int textures = UnityEngine.Random.Range(0, 11);
+                int scarf_texture = UnityEngine.Random.Range(0, 11);
 
-                scarf.GetComponent<Renderer>().materials[0].mainTexture = scarf_textures[textures];
+                scarf.GetComponent<Renderer>().materials[0].mainTexture = scarf_textures[scarf_texture];
             }
 
             int which_trouser = UnityEngine.Random.Range(0, 2);
@@ -823,9 +823,9 @@ public class clothing : MonoBehaviour
             {
                 trousers.SetActive(true);
 
-                int texture = UnityEngine.Random.Range(0, 15);
+                int trouser_texture = UnityEngine.Random.Range(0, 15);
 
-                trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[texture];
+                trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[trouser_texture];
                 
             }
             // short pants
@@ -834,9 +834,9 @@ public class clothing : MonoBehaviour
                 shortpants.SetActive(true);
 
 
-                int texture = UnityEngine.Random.Range(0, 11);
+                int shortpants_texture = UnityEngine.Random.Range(0, 11);
 
-                shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[texture];
+                shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[shortpants_texture];
 
 
             }
@@ -850,34 +850,34 @@ public class clothing : MonoBehaviour
             {
                 pullover.SetActive(true);
 
-                int texture = UnityEngine.Random.Range(0, 17);
+                int pullover_texture = UnityEngine.Random.Range(0, 17);
 
-                pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[texture];
+                pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[pullover_texture];
             }
 
             if (upper_cloth == 1)
             {
                 shirt.SetActive(true);
 
-                int texture = UnityEngine.Random.Range(0, 14);
+                int shirt_texture = UnityEngine.Random.Range(0, 14);
 
-                shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[texture];
+                shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[shirt_texture];
             }
             if (upper_cloth == 2)
             {
                 t_shirt.SetActive(true);
 
-                int texture = UnityEngine.Random.Range(0, 21);
+                int t_shirt_texture = UnityEngine.Random.Range(0, 21);
 
-                t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[texture];
+                t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[t_shirt_texture];
             }
             if (upper_cloth == 3)
             {
                 tank_top.SetActive(true);
 
-                int texture = UnityEngine.Random.Range(0, 11);
+                int tank_top_texture = UnityEngine.Random.Range(0, 11);
 
-                tank_top.GetComponent<Renderer>().materials[0].mainTexture = tank_top_textures[texture];
+                tank_top.GetComponent<Renderer>().materials[0].mainTexture = tank_top_textures[tank_top_texture];
             }
 
 
