@@ -786,7 +786,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114661646
 MonoBehaviour:
@@ -1876,7 +1876,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316748601
 MonoBehaviour:
@@ -4757,8 +4757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236.694, y: -43.267}
-  m_SizeDelta: {x: 573.389, y: 186.533}
+  m_AnchoredPosition: {x: 80, y: -42.055}
+  m_SizeDelta: {x: 573.389, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &813389069
 PrefabInstance:
@@ -7810,7 +7810,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1453590630
 PrefabInstance:
@@ -8144,7 +8144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.011375, y: 0.797698}
   m_AnchorMax: {x: 0.1803125, y: 0.87500006}
-  m_AnchoredPosition: {x: 9.99939, y: -16}
+  m_AnchoredPosition: {x: 9.999512, y: -16}
   m_SizeDelta: {x: 1.823, y: 51.898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624135882
@@ -8708,7 +8708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 963194225}
-  stage: 1
+  stage: 5
   playTime: 0
   foundAll: 0
   isPlaying: 0
@@ -8728,9 +8728,9 @@ MonoBehaviour:
   targetImg3: {fileID: 1440448172}
   playTimeResultTxt: {fileID: 1100664688}
   images:
-  - {fileID: 21300000, guid: fbf8fe88f357340669c7d2e0d9cd6861, type: 3}
-  - {fileID: 21300000, guid: 5e2e87f8d588d4d8bb78c0792421df50, type: 3}
-  - {fileID: 21300000, guid: 1b94679584b8547a09c83866ca0333db, type: 3}
+  - {fileID: 21300000, guid: c6697d79b66df464b8ecf638c8d0de66, type: 3}
+  - {fileID: 21300000, guid: e06b1a9b042d449a0858b30e5d75472c, type: 3}
+  - {fileID: 21300000, guid: 1dd6785250d0f4d9485760fa02289739, type: 3}
 --- !u!1001 &1763784599
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     
     //public Player player;
 
-    public int stage = 1;
+    // public int stage = 1;
+    public int stage;
     public float playTime;
     //public Target target1;
     //public Target target2;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     private bool toggle3 =false;
     private bool toggle4=false;
 
+
     public TMP_Text playTimeResultTxt;
 
     public Sprite[] images;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameStart(){
+
         playTime=0;
         startPanel.SetActive(false);
         gamePanel.SetActive(true);
@@ -94,16 +97,16 @@ public class GameManager : MonoBehaviour
             maxPlayTime=180;
         }
 
-        while(numbersList.Count < targetNumber){
-            int number = Random.Range(0, images.Length);
-            if(!numbersList.Contains(number)){
-                numbersList.Add(number);
-            }
-        }
+        
+
+        // while(numbersList.Count < targetNumber){
+        //     int number = Random.Range(0, images.Length);
+        //     if(!numbersList.Contains(number)){
+        //         numbersList.Add(number);
+        //     }
+        // }
 
         if(targetNumber==1){
-            // mj
-            // targetImg1.sprite = images[numbersList[0]];
             targetImg1.sprite = images[0];
 
             targetBtn1.SetActive(true);
@@ -111,9 +114,8 @@ public class GameManager : MonoBehaviour
             targetBtn3.SetActive(false);
         }
         else if(targetNumber==2){
-            // mj
-            targetImg1.sprite = images[numbersList[0]];
-            targetImg2.sprite = images[numbersList[1]];
+            targetImg1.sprite = images[0];
+            targetImg2.sprite = images[1];
 
             targetBtn1.SetActive(true);
             targetBtn2.SetActive(true);
@@ -121,9 +123,9 @@ public class GameManager : MonoBehaviour
         }
         else{
             // mj
-            targetImg1.sprite = images[numbersList[0]];
-            targetImg2.sprite = images[numbersList[1]];
-            targetImg3.sprite = images[numbersList[2]];
+            targetImg1.sprite = images[0];
+            targetImg2.sprite = images[1];
+            targetImg3.sprite = images[2];
 
             targetBtn1.SetActive(true);
             targetBtn2.SetActive(true);
@@ -133,7 +135,6 @@ public class GameManager : MonoBehaviour
     }
     
     void Start() {
-        stage=1;
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
         successPanel.SetActive(false);
