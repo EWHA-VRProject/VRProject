@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:VRProject/Assets/CSB/CSB_Scenes/StartScene.unity.meta
 guid: d45673eba415d804898f90d8b2fc1bc0
+========
+guid: 86104d16464dc5c4f8fe50083ba01a98
+folderAsset: yes
+>>>>>>>> Target:VRProject/Assets/Oculus.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
