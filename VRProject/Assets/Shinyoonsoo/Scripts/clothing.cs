@@ -933,10 +933,10 @@ public class clothing : MonoBehaviour
     
     {
         GameObject accessories = other.gameObject;
-        switch(accessories.tag)
+        switch(accessories.tag) // 종류 판단
         {
             case "shoes3_d":
-            {
+            {   
                 shoes1.SetActive(false);
                 shoes2.SetActive(false);
                 shoes3.SetActive(true);
