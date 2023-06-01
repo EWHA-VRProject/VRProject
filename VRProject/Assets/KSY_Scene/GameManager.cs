@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     
     //public Player player;
 
-    public int stage = 1;
+    // public int stage = 1;
+    public int stage;
     public float playTime;
     //public Target target1;
     //public Target target2;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject gamePanel;
     public GameObject successPanel;
     public GameObject failPanel;
+    public GameObject inventoryPanel;
     public TMP_Text stageTxt;
     public TMP_Text playTimeTxt;
     public GameObject targetBtn1;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
     private bool toggle1 =false;
     private bool toggle2 =false;
     private bool toggle3 =false;
+    private bool toggle4=false;
+
 
     public TMP_Text playTimeResultTxt;
 
@@ -46,14 +50,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameStart(){
+
         playTime=0;
         startPanel.SetActive(false);
         gamePanel.SetActive(true);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
         targetImg1.gameObject.SetActive(false);
         targetImg2.gameObject.SetActive(false);
         targetImg3.gameObject.SetActive(false);
+        toggle1=false;
+        toggle2=false;
+        toggle3=false;
+        toggle4=false;
         isPlaying=true;
 
 
@@ -87,16 +97,16 @@ public class GameManager : MonoBehaviour
             maxPlayTime=180;
         }
 
-        while(numbersList.Count < targetNumber){
-            int number = Random.Range(0, images.Length);
-            if(!numbersList.Contains(number)){
-                numbersList.Add(number);
-            }
-        }
+        
+
+        // while(numbersList.Count < targetNumber){
+        //     int number = Random.Range(0, images.Length);
+        //     if(!numbersList.Contains(number)){
+        //         numbersList.Add(number);
+        //     }
+        // }
 
         if(targetNumber==1){
-            // mj
-            // targetImg1.sprite = images[numbersList[0]];
             targetImg1.sprite = images[0];
 
             targetBtn1.SetActive(true);
@@ -104,9 +114,8 @@ public class GameManager : MonoBehaviour
             targetBtn3.SetActive(false);
         }
         else if(targetNumber==2){
-            // mj
-            targetImg1.sprite = images[numbersList[0]];
-            targetImg2.sprite = images[numbersList[1]];
+            targetImg1.sprite = images[0];
+            targetImg2.sprite = images[1];
 
             targetBtn1.SetActive(true);
             targetBtn2.SetActive(true);
@@ -114,9 +123,9 @@ public class GameManager : MonoBehaviour
         }
         else{
             // mj
-            targetImg1.sprite = images[numbersList[0]];
-            targetImg2.sprite = images[numbersList[1]];
-            targetImg3.sprite = images[numbersList[2]];
+            targetImg1.sprite = images[0];
+            targetImg2.sprite = images[1];
+            targetImg3.sprite = images[2];
 
             targetBtn1.SetActive(true);
             targetBtn2.SetActive(true);
@@ -126,14 +135,19 @@ public class GameManager : MonoBehaviour
     }
     
     void Start() {
-        stage=1;
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
         targetImg1.gameObject.SetActive(false);
         targetImg2.gameObject.SetActive(false);
         targetImg3.gameObject.SetActive(false);
+        toggle1 =false;
+        toggle2 =false;
+        toggle3 =false;
+        toggle4=false;
+
     }
 
     void Update(){
@@ -148,6 +162,7 @@ public class GameManager : MonoBehaviour
         if(foundAll){
             isPlaying=false;
             gamePanel.SetActive(false);
+            inventoryPanel.SetActive(false);
             successPanel.SetActive(true);
             int hour=(int)(playTime/3600);
             int min=(int)(playTime-hour*3600)/60;
@@ -212,14 +227,22 @@ public class GameManager : MonoBehaviour
             toggle2=false;
             targetImg1.gameObject.SetActive(false);
             targetImg2.gameObject.SetActive(false);
-
-
             targetImg3.gameObject.SetActive(true);
             toggle3=true;
         }
         else{
             targetImg3.gameObject.SetActive(false);
             toggle3=false;
+        }
+    }
+    public void showInventory(){
+        if(!toggle4){
+            inventoryPanel.SetActive(true);
+            toggle4=true;
+        }
+        else{
+            inventoryPanel.SetActive(false);
+            toggle4=false;
         }
     }
     
