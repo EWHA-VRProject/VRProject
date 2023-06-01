@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,14 @@ public class PlayerController : MonoBehaviour
     // 만약에 tag가 Target이면 감옥으로 -> 감옥은 List로 
     public List<GameObject> targets = new List<GameObject>();
 
+    // 정답 확인 관련 =====================
+    public GameObject answer;
+    public Transform[] answerChildren;
+    public Transform[] child;
+    public List<bool> isAnsList = new List<bool>();
+    public List<bool> isList = new List<bool>();
+
+    public List<bool> isListChange = new List<bool>();
 
     GameObject target;
 
@@ -27,7 +36,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        cc = GetComponent<CharacterController>();   
+        cc = GetComponent<CharacterController>();
+
+        answer = GameObject.FindWithTag("Answer");  // 정답 게임오브젝트
+        answerChildren = answer.GetComponentsInChildren<Transform>(true);   // 정답의 자식 모두
+
     }
 
     void Update()
@@ -137,10 +150,26 @@ public class PlayerController : MonoBehaviour
     {
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
         {
+            child.Initialize();
+            isAnsList.Clear();
+            isList.Clear();
+
             Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // 레이 쏘기
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
+                foreach (Transform child in answerChildren)
+                {
+                    isAnsList.Add(child.gameObject.activeSelf); // 정답의 자식들 bool 값 (활성화 여부)
+                }
+                child = hitInfo.transform.GetComponentsInChildren<Transform>(true);  // 레이 자식 오브젝트 모두
+                foreach (Transform child in child)
+                {
+                    isList.Add(child.gameObject.activeSelf);
+                }
+
+                // 
+
                 if (hitInfo.transform.CompareTag("Answer")) // 태그가 "Answer"이면
                 {
                     print("정답");
@@ -148,6 +177,35 @@ public class PlayerController : MonoBehaviour
                 else if(hitInfo.transform.CompareTag("Target"))
                 {
                     print("실패");
+                }
+                else if (isList.SequenceEqual(isAnsList))
+                {
+                    List<bool> isAllTrue = new List<bool>();
+                    // 텍스쳐까지 같은지 확인
+                    // SetActive 가 true 인 오브젝트들 찾아서 텍스쳐 동일한지 확인
+                    for (int i = 0; i < isList.Count; i++)
+                    {
+                        if (child[i].gameObject.GetComponent<SkinnedMeshRenderer>() == null)
+                        {
+                            print("아니야");
+                        }
+                        else if (child[i].gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture == answerChildren[i].gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture)
+                        {
+                            isAllTrue.Add(true);
+                        }
+                        else
+                        {
+                            print("여긴?");
+                            isAllTrue.Add(false);
+                        }
+
+                    }
+                    if(isAllTrue.All(element => element == true))
+                    {
+                        print("찐정답");
+                    }
+                    
+
                 }
             }
         }
