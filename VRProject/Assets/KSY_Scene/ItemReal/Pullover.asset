@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220bbeaed595d420397032ab5086641e, type: 3}
+  m_Name: Pullover
+  m_EditorClassIdentifier: 
+  item: {fileID: 5707227329866553292, guid: ee99f90da6fb249d188068bbd4b2123b, type: 3}
+  itemName: Pullover
+  itemImage: {fileID: 21300000, guid: 091f6b06d72ea438fae71a19b8d3b529, type: 3}

@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     public List<Item> items;
 
     [SerializeField]
-    private Transform slotParent;
+    public Transform slotParent;
     [SerializeField]
-    private Slot[] slots;
+    public Slot[] slots;
+    public Item SelectedItem;
 
-    private void OnValidate() {
+    public void OnValidate() {
         slots = slotParent.GetComponentsInChildren<Slot>();
     }
 
-    void Awake() {
+
+    public void Awake() {
         FreshSlot();
+        
     }
 
     public void FreshSlot() {
@@ -37,4 +41,29 @@ public class Inventory : MonoBehaviour
             print("슬롯이 가득 차 있습니다.");
         }
     }
+    public void ClickSlot1(){
+        Item _item=items[0];
+        items.RemoveAt(0);
+        FreshSlot();
+        SelectedItem= _item;
+    }
+    public void ClickSlot2(){
+        Item _item=items[1];
+        items.RemoveAt(1);
+        FreshSlot();
+        SelectedItem= _item;
+    }
+    public void ClickSlot3(){
+        Item _item=items[2];
+        items.RemoveAt(2);
+        FreshSlot();
+        SelectedItem= _item;
+    }
+
+    public void DeleteAll(){
+        items.Clear();
+        FreshSlot();
+    }
+
+
 }
