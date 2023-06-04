@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart(){
 
+
         playTime=0;
         startPanel.SetActive(false);
         gamePanel.SetActive(true);
