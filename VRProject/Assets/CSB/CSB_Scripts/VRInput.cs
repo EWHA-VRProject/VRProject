@@ -265,7 +265,7 @@ public static class VRInput
         {
 #if PC
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//#elif Oculus
+#elif Oculus
 
             if(hand == Controller.RController)
             {

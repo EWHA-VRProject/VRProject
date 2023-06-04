@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     // 초점 관련 ==========================
     public Transform crosshair;
 
+    // 아이템 잡기 관련 =========
+    public bool isItem = false; // 잡고 있는지 여부
+    GameObject item;
+
+
     void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
             yVelocity = 0;
         }
 
-        // 점프, PC일 경우 스페이스 바, Oculus일 경우 오른쪽 컨트롤러 점프 버튼 클릭
+        // 점프, PC일 경우 스페이스 바, Oculus일 경우 오른쪽 Button.Two 점프 버튼 클릭
         if(VRInput.GetDown(VRInput.Button.Two, VRInput.Controller.RController))
         {
             yVelocity = jumpPower;
@@ -92,9 +97,21 @@ public class PlayerController : MonoBehaviour
 
         GoTOThePrison();
 
+        // 아이템 잡기 관련 ============================================
+        if (!isItem)    // 잡은 것이 없는 경우
+        {
+            // 잡기
+            DragAnItem();
+        }
+        else
+        {
+            // 놓기
+            CatchAnItem();
+        }
+
     }
 
-    // 타겟 잡기 관련 함수 ========================================================
+    // 타겟 잡기 관련 함수 (오른쪽 Button.One) ========================================================
     void UnGrab()
     {
         //
@@ -106,7 +123,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 타겟 잡기 - layer가 target일 경우 감옥으로, 만약 감옥이 다 찼으면 감옥이 다 찼다고 알려줌
+    // 타겟 잡기 (오른쪽 Button.One)
+    // - layer가 target일 경우 감옥으로, 만약 감옥이 다 찼으면 감옥이 다 찼다고 알려줌
     void Grab()
     {
         if (VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RController))
@@ -145,7 +163,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 최종 선택 관련 함수 ================================
+    // 최종 선택 관련 함수 (오른쪽 IndexTrigger) ================================
     void MakeAChoice()
     {
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
@@ -211,7 +229,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 감옥 이동 관련 ===================
+    // 감옥 이동 관련 (왼쪽 Button.One) ===================
     public GameObject prisonPoint;
     bool isPrison = false;
     void GoTOThePrison()
@@ -230,4 +248,63 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    // 아이템 잡기 관련 (왼쪽 IndexTrigger) ==================
+    void CatchAnItem()
+    {
+        // 한번 누르면 아이템 획득
+        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
+        {
+            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // 레이 쏘기
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))   // 만약 레이어가 item이면
+            {
+                if (hitInfo.transform.CompareTag("Item"))
+                {
+                    // 인벤토리로
+                    isItem = false;
+                    item = hitInfo.transform.gameObject;
+
+
+                    // ***** 아이템 인벤토리로 추가 ******
+                }
+            }
+        }
+        if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
+        {
+            isItem = false;
+            item.GetComponent<Rigidbody>().isKinematic = false;
+            item.transform.parent = null;
+            item = null;
+
+        }
+    }
+
+    void DragAnItem()
+    {        
+        // 꾹 누르면 아이템 드래그
+        if (VRInput.Get(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
+        {
+            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // 레이 쏘기
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))   // 만약 레이어가 item이면
+            {
+                if (hitInfo.transform.CompareTag("Item"))
+                {
+                    isItem = true;
+
+                    // 컨트롤러가 향하는 방향 따라 이동
+                    item = hitInfo.transform.gameObject;
+                    item.transform.parent = VRInput.LHand;
+                    item.GetComponent<Rigidbody>().isKinematic = true;
+
+                    // ***** 아이템 인벤토리로 추가 ******
+                }
+            }
+        }
+        //
+
+    }
+
+    // 인벤토리 열기 (왼쪽 Button.Two) =================
 }

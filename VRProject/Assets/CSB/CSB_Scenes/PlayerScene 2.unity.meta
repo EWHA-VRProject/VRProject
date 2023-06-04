@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:VRProject/Assets/CSB/CSB_Scenes/StartScene.unity.meta
+<<<<<<<< HEAD:VRProject/Assets/CSB/CSB_Scenes/StartScene.unity.meta
+guid: 163ec77798da12045bdcbd43b4a4b427
+========
+guid: 86104d16464dc5c4f8fe50083ba01a98
+folderAsset: yes
+>>>>>>>> Target:VRProject/Assets/Oculus.meta
+=======
+guid: 48667ec556a53c243a2b8d4baefba347
+>>>>>>> 93edfb9a2a5bf76cf92971844e52773873cad937:VRProject/Assets/CSB/CSB_Scenes/PlayerScene 1.unity.meta
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
