@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &44297834345134435
+--- !u!1 &8337058659957241582
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7284034578238521657}
-  - component: {fileID: 6269196723170328166}
-  - component: {fileID: 7569399313963923123}
-  - component: {fileID: 440863896738918651}
+  - component: {fileID: 1601127333169483444}
+  - component: {fileID: 2607275481555382763}
+  - component: {fileID: 1884095203334830398}
+  - component: {fileID: 8444264043346624374}
+  - component: {fileID: 4883051918686676211}
+  - component: {fileID: 2754265940500638589}
   m_Layer: 0
   m_Name: Shoes1_i
   m_TagString: shoes1_a
@@ -19,36 +21,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7284034578238521657
+--- !u!4 &1601127333169483444
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44297834345134435}
+  m_GameObject: {fileID: 8337058659957241582}
   m_LocalRotation: {x: -0.6072278, y: 0.38141188, z: 0.4508144, w: 0.53156906}
-  m_LocalPosition: {x: -1.3413972, y: 0.004643934, z: 0.4723684}
+  m_LocalPosition: {x: -3.0901968, y: 0.016190106, z: 0.9215985}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -81.674, y: -101.31, z: 173.629}
---- !u!33 &6269196723170328166
+--- !u!33 &2607275481555382763
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44297834345134435}
+  m_GameObject: {fileID: 8337058659957241582}
   m_Mesh: {fileID: 4300092, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
---- !u!23 &7569399313963923123
+--- !u!23 &1884095203334830398
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44297834345134435}
+  m_GameObject: {fileID: 8337058659957241582}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf1a67f7317e4e95b6a0d03632e8326, type: 2}
+  - {fileID: 2100000, guid: 9fd2ebbd37167e348a23e9419a0842c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,17 +86,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &440863896738918651
+--- !u!64 &8444264043346624374
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44297834345134435}
+  m_GameObject: {fileID: 8337058659957241582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300092, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+--- !u!54 &4883051918686676211
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337058659957241582}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2754265940500638589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337058659957241582}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300092, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0026526866, y: 0.0036893128, z: 0.0007218379}
+  m_Center: {x: -0.00017996383, y: 0.000027296885, z: 0.00033041206}
