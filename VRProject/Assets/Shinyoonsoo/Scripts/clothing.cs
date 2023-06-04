@@ -588,343 +588,153 @@ public class clothing : MonoBehaviour
             }
         }
 
+        shoes = UnityEngine.Random.Range(0, 3);
 
-        // determining complet suits or normal cloth
-        suit_or_cloth = UnityEngine.Random.Range(0, 2);
-
-        // determing      suit/ normal cloth to wear
-
-        // 수트 입거나 아니면 상하의 입음 (도둑 제외 모두 헤어/ 콧수염 들어감)
-        if (suit_or_cloth == 0)
+        if(shoes == 0)
         {
-            // suits
+            shoes1.SetActive(true);
 
-            which_suit = UnityEngine.Random.Range(0,11);
+            shoes1_texture = UnityEngine.Random.Range(0, 8);
 
+            shoes1.GetComponent<Renderer>().materials[0].mainTexture = shoes1_textures[shoes1_texture];
 
+        }
 
+        if (shoes == 1)
+        {
+            shoes2.SetActive(true);
 
-            // bankersuit    0
-            // cocksuit      1
-            // farmersuit    2
-            // firemansuit   3
-            // mechanicsuit  4
-            // nursesuit     5
-            // policesuit    6
-            // roobersuit    7
-            // securitysuit  8
-            // sellersuit    9
-            // workersuit    10
+            shoes2_texture = UnityEngine.Random.Range(0, 7);
 
+            shoes2.GetComponent<Renderer>().materials[0].mainTexture = shoes2_textures[shoes2_texture];
 
-            // banker suit
-            if (which_suit == 0)
-            {
-                banker_suit.SetActive(true);
+        }
 
-                int which_texture = UnityEngine.Random.Range(0, 7);
+        if (shoes == 2)
+        {
+            shoes3.SetActive(true);
 
-               
-                banker_suit.GetComponent<Renderer>().materials[0].mainTexture = banker_suit_texture[which_texture];
-                
-            }
-            // cock suit
-            if(which_suit == 1)
-            {
-                cock_suit.SetActive(true);
+            shoes3_texture = UnityEngine.Random.Range(0, 6);
 
-                cock_suit.GetComponent<Renderer>().materials[0].mainTexture = cock_suit_texture;
+            shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
 
-                if(hat)
-                {
-                    cock_suit_hat.SetActive(true);
-                    cock_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = cock_suit_texture;
-                }
-            }
-            // farmer suit
-            if (which_suit == 2)
-            {
-                farmer_suit.SetActive(true);
-
-                farmer_suit.GetComponent<Renderer>().materials[0].mainTexture = farmer_suit_texture;
-
-                if (hat)
-                {
-                    farmer_suit_hat.SetActive(true);
-                    farmer_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = farmer_suit_texture;
-                }
-            }
-            // fireman suit
-            if (which_suit == 3)
-            {
-                fireman_suit.SetActive(true);
-
-                fireman_suit.GetComponent<Renderer>().materials[0].mainTexture = fireman_suit_texture;
-
-                if (hat)
-                {
-                    fireman_suit_hat.SetActive(true);
-
-                    fireman_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = fireman_suit_texture;
-                }
-            }
-            // mechanic suit
-            if (which_suit == 4)
-            {
-                mechanic_suit.SetActive(true);
-
-                mechanic_suit.GetComponent<Renderer>().materials[0].mainTexture = mechanic_suit_texture;
-
-                if (hat)
-                {
-                    mechanic_suit_hat.SetActive(true);
-
-                    mechanic_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = mechanic_suit_texture;
-                }
-            }
-            // nurse suit
-            if (which_suit == 5)
-            {
-                nurse_suit.SetActive(true);
-
-                nurse_suit.GetComponent<Renderer>().materials[0].mainTexture = nurse_suit_texture;
-
-               
-            }
-            // police suit
-            if (which_suit == 6)
-            {
-                police_suit.SetActive(true);
-
-                police_suit.GetComponent<Renderer>().materials[0].mainTexture = police_suit_texture;
-
-                if (hat)
-                {
-                    police_suit_hat.SetActive(true);
-
-                    police_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = police_suit_texture;
-                }
-            }
-            // robber suit
-            if (which_suit == 7)
-            {
-                roober_suit.SetActive(true);
-
-                roober_suit.GetComponent<Renderer>().materials[0].mainTexture = roober_suit_texture;
-
-              
-                    roober_suit_hat.SetActive(true);
-
-                    roober_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = roober_suit_texture;
-
-                // 도둑 수트의 경우에는 헤어나 콧수염 안들어감
-                hair_a.SetActive(false);
-                hair_b.SetActive(false);
-                hair_c.SetActive(false);
-                hair_d.SetActive(false);
-                hair_e.SetActive(false);
-
-                beard_a.SetActive(false);
-                beard_b.SetActive(false);
-                beard_c.SetActive(false);
-                beard_d.SetActive(false);
-            }
-            // security guard suit
-            if (which_suit == 8)
-            {
-                security_guard_suit.SetActive(true);
-
-                security_guard_suit.GetComponent<Renderer>().materials[0].mainTexture = security_guard_suit_texture;
-
-                if (hat)
-                {
-                    security_guard_suit_hat.SetActive(true);
-
-                    security_guard_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = security_guard_suit_texture;
-                }
-            }
-            // seller suit
-            if (which_suit == 9)
-            {
-                seller_suit.SetActive(true);
-
-                seller_suit.GetComponent<Renderer>().materials[0].mainTexture = seller_suit_texture;
-
-            }
-            // worker suit
-            if (which_suit == 10)
-            {
-                worker_suit.SetActive(true);
-
-                worker_suit.GetComponent<Renderer>().materials[0].mainTexture = worker_suit_texture;
-
-                if (hat)
-                {
-                    worker_suit_hat.SetActive(true);
-
-                    worker_suit_hat.GetComponent<Renderer>().materials[0].mainTexture = worker_suit_texture;
-                }
-            }
+        }
 
 
+        int glasses_percentage = UnityEngine.Random.Range(0, 100);
+
+        if(glasses_percentage < 20)
+        {
+            glasses.SetActive(true);
+
+            glasses_texture = UnityEngine.Random.Range(0, 6);
+
+            glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_textures[glasses_texture];
+        }
+
+        chain = UnityEngine.Random.Range(0, 3);
+
+        if(chain == 0)
+        {
+            chain1.SetActive(true);
+
+            chain1_texture = UnityEngine.Random.Range(0, 4);
+
+            chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[chain1_texture];
+
+        }
+        if(chain == 1)
+        {
+            chain2.SetActive(true);
+
+            chain2_texture = UnityEngine.Random.Range(0, 3);
+
+            chain2.GetComponent<Renderer>().materials[0].mainTexture = chain2_textures[chain2_texture];
+
+        }
+        if(chain == 2)
+        {
+            chain3.SetActive(true);
+
+            chain3_texture = UnityEngine.Random.Range(0, 3);
+
+            chain3.GetComponent<Renderer>().materials[0].mainTexture = chain3_textures[chain3_texture];
+
+        }
+
+        int scarfPercentage = UnityEngine.Random.Range(0, 100);
+
+        if(scarfPercentage < 20)
+        {
+            scarf.SetActive(true);
+
+            scarf_texture = UnityEngine.Random.Range(0, 11);
+
+            scarf.GetComponent<Renderer>().materials[0].mainTexture = scarf_textures[scarf_texture];
+        }
+
+        which_trouser = UnityEngine.Random.Range(0, 2);
+
+        // trousers
+        if(which_trouser == 0)
+        {
+            trousers.SetActive(true);
+
+            trouser_texture = UnityEngine.Random.Range(0, 15);
+
+            trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[trouser_texture];
+            
+        }
+        // short pants
+        if (which_trouser == 1)
+        {
+            shortpants.SetActive(true);
+
+
+            shortpants_texture = UnityEngine.Random.Range(0, 11);
+
+            shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[shortpants_texture];
 
 
         }
-        if (suit_or_cloth == 1)
+
+
+        // upper bosy cloth :   0 = pullover  1 = shirt    2 = t_shirt    3 = tanktop
+        int upper_cloth = UnityEngine.Random.Range(0, 4);
+
+        
+        if(upper_cloth == 0)
         {
-            // normal cloth
+            pullover.SetActive(true);
 
-            shoes = UnityEngine.Random.Range(0, 3);
+            pullover_texture = UnityEngine.Random.Range(0, 17);
 
-            if(shoes == 0)
-            {
-                shoes1.SetActive(true);
+            pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[pullover_texture];
+        }
 
-                shoes1_texture = UnityEngine.Random.Range(0, 8);
+        if (upper_cloth == 1)
+        {
+            shirt.SetActive(true);
 
-                shoes1.GetComponent<Renderer>().materials[0].mainTexture = shoes1_textures[shoes1_texture];
+            shirt_texture = UnityEngine.Random.Range(0, 14);
 
-            }
+            shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[shirt_texture];
+        }
+        if (upper_cloth == 2)
+        {
+            t_shirt.SetActive(true);
 
-            if (shoes == 1)
-            {
-                shoes2.SetActive(true);
+            t_shirt_texture = UnityEngine.Random.Range(0, 21);
 
-                shoes2_texture = UnityEngine.Random.Range(0, 7);
+            t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[t_shirt_texture];
+        }
+        if (upper_cloth == 3)
+        {
+            tank_top.SetActive(true);
 
-                shoes2.GetComponent<Renderer>().materials[0].mainTexture = shoes2_textures[shoes2_texture];
+            tank_top_texture = UnityEngine.Random.Range(0, 11);
 
-            }
-
-            if (shoes == 2)
-            {
-                shoes3.SetActive(true);
-
-                shoes3_texture = UnityEngine.Random.Range(0, 6);
-
-                shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
-
-            }
-
-
-            int glasses_percentage = UnityEngine.Random.Range(0, 100);
-
-            if(glasses_percentage < 20)
-            {
-                glasses.SetActive(true);
-
-                glasses_texture = UnityEngine.Random.Range(0, 6);
-
-                glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_textures[glasses_texture];
-            }
-
-            chain = UnityEngine.Random.Range(0, 3);
-
-            if(chain == 0)
-            {
-                chain1.SetActive(true);
-
-                chain1_texture = UnityEngine.Random.Range(0, 4);
-
-                chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[chain1_texture];
-
-            }
-            if(chain == 1)
-            {
-                chain2.SetActive(true);
-
-                chain2_texture = UnityEngine.Random.Range(0, 3);
-
-                chain2.GetComponent<Renderer>().materials[0].mainTexture = chain2_textures[chain2_texture];
-
-            }
-            if(chain == 2)
-            {
-                chain3.SetActive(true);
-
-                chain3_texture = UnityEngine.Random.Range(0, 3);
-
-                chain3.GetComponent<Renderer>().materials[0].mainTexture = chain3_textures[chain3_texture];
-
-            }
-
-            int scarfPercentage = UnityEngine.Random.Range(0, 100);
-
-            if(scarfPercentage < 20)
-            {
-                scarf.SetActive(true);
-
-                scarf_texture = UnityEngine.Random.Range(0, 11);
-
-                scarf.GetComponent<Renderer>().materials[0].mainTexture = scarf_textures[scarf_texture];
-            }
-
-            which_trouser = UnityEngine.Random.Range(0, 2);
-
-            // trousers
-            if(which_trouser == 0)
-            {
-                trousers.SetActive(true);
-
-                trouser_texture = UnityEngine.Random.Range(0, 15);
-
-                trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[trouser_texture];
-                
-            }
-            // short pants
-            if (which_trouser == 1)
-            {
-                shortpants.SetActive(true);
-
-
-                shortpants_texture = UnityEngine.Random.Range(0, 11);
-
-                shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[shortpants_texture];
-
-
-            }
-
-
-            // upper bosy cloth :   0 = pullover  1 = shirt    2 = t_shirt    3 = tanktop
-            int upper_cloth = UnityEngine.Random.Range(0, 4);
-
-            
-            if(upper_cloth == 0)
-            {
-                pullover.SetActive(true);
-
-                pullover_texture = UnityEngine.Random.Range(0, 17);
-
-                pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[pullover_texture];
-            }
-
-            if (upper_cloth == 1)
-            {
-                shirt.SetActive(true);
-
-                shirt_texture = UnityEngine.Random.Range(0, 14);
-
-                shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[shirt_texture];
-            }
-            if (upper_cloth == 2)
-            {
-                t_shirt.SetActive(true);
-
-                t_shirt_texture = UnityEngine.Random.Range(0, 21);
-
-                t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[t_shirt_texture];
-            }
-            if (upper_cloth == 3)
-            {
-                tank_top.SetActive(true);
-
-                tank_top_texture = UnityEngine.Random.Range(0, 11);
-
-                tank_top.GetComponent<Renderer>().materials[0].mainTexture = tank_top_textures[tank_top_texture];
-            }
-
-
-
+            tank_top.GetComponent<Renderer>().materials[0].mainTexture = tank_top_textures[tank_top_texture];
         }
         
     }
@@ -935,13 +745,136 @@ public class clothing : MonoBehaviour
         GameObject accessories = other.gameObject;
         switch(accessories.tag) // 종류 판단
         {
-            case "shoes3_d":
+            case "chain1_d":
+            {   
+                chain1.SetActive(true);
+                chain2.SetActive(false);
+                chain3.SetActive(false);
+
+                chain1_texture = 3;
+                chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[chain1_texture];
+                break;
+            }
+            case "hair_a_c":
+            {   
+                hair_a.SetActive(true);
+                hair_b.SetActive(false);
+                hair_c.SetActive(false);
+                hair_d.SetActive(false);
+                hair_e.SetActive(false);
+                hair_a.GetComponent<Renderer>().materials[0].mainTexture = hair_a_textures[2];
+                break;
+            }
+            case "pullover_p":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(true);
+                shirt.SetActive(false);
+                t_shirt.SetActive(false);
+                tank_top.SetActive(false);
+                pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[15]; // pullover texture       
+                break;
+            }
+            case "shoes3_c":
             {   
                 shoes1.SetActive(false);
                 shoes2.SetActive(false);
                 shoes3.SetActive(true);
-                shoes3_texture = 3;
+                shoes3_texture = 2;
                 shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
+                break;
+            }
+            case "shortpants_i":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                shortpants_texture = 8;
+                shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[8]; // short pants texture
+                break;
+            }
+            //Answer 2
+            case "hair_c_a":
+            {   
+                hair_a.SetActive(false);
+                hair_b.SetActive(false);
+                hair_c.SetActive(true);
+                hair_d.SetActive(false);
+                hair_e.SetActive(false);
+                hair_c.GetComponent<Renderer>().materials[0].mainTexture = hair_c_textures[1];
+                break;
+            }
+            case "shirt_h":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(false);
+                shirt.SetActive(true);
+                t_shirt.SetActive(false);
+                tank_top.SetActive(false);
+                shirt_texture = 7;
+                shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[shirt_texture]; // pullover texture       
+                break;
+            }
+            case "shoes1_i":
+            {   
+                shoes1.SetActive(true);
+                shoes2.SetActive(false);
+                shoes3.SetActive(false);
+                shoes1_texture = 8;
+                shoes1.GetComponent<Renderer>().materials[0].mainTexture = shoes1_textures[shoes1_texture]; // shoes1 texture
+                break;
+            }
+            case "shortpants_e":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                shortpants_texture = 4;
+                shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
+                break;
+            }
+            //Answer3
+            case "glasses1_a":
+            {   
+                glasses.SetActive(true);
+                glasses_texture = 3;
+                glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_textures[glasses_texture]; // pullover texture   
+                break;
+            }
+            case "hair_d_b":
+            {   
+                hair_a.SetActive(false);
+                hair_b.SetActive(false);
+                hair_c.SetActive(false);
+                hair_d.SetActive(true);
+                hair_e.SetActive(false);
+                hair_d.GetComponent<Renderer>().materials[0].mainTexture = hair_d_textures[1];
+                break;
+            }
+            case "shoes2_i":
+            {   
+                shoes1.SetActive(false);
+                shoes2.SetActive(true);
+                shoes3.SetActive(false);
+                shoes2_texture = 8;
+                shoes2.GetComponent<Renderer>().materials[0].mainTexture = shoes2_textures[shoes2_texture];
+                break;
+            }
+            case "t_shirt_h":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(false);
+                shirt.SetActive(false);
+                t_shirt.SetActive(true);
+                tank_top.SetActive(false);
+                t_shirt_texture = 7;
+                t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[t_shirt_texture];
+                break;
+            }
+            case "trousers_e":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                trouser_texture = 4;
+                trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[trouser_texture]; // short pants texture
                 break;
             }
         }

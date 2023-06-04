@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 8709772997798681035}
   - component: {fileID: 550301523775510719}
   - component: {fileID: 8755217412373087011}
+  - component: {fileID: 4956375968657935833}
+  - component: {fileID: 6919105867745083244}
   m_Layer: 0
-  m_Name: Hair_a
+  m_Name: Hair_a_c
   m_TagString: hair_a_c
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8815020450893982140}
   m_LocalRotation: {x: -0.6274395, y: 0.35693434, z: 0.329971, w: 0.60830647}
-  m_LocalPosition: {x: -1.0902923, y: 0.22492617, z: 0.104600474}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: -1.0881, y: 0.33354, z: 0.10002}
+  m_LocalScale: {x: 150.71219, y: 150.71219, z: 150.71219}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9ffa9ebbb4b63804fbe234fe18d8016a, type: 2}
+  - {fileID: 2100000, guid: 2f9f83edb3653984d8632554b5a95945, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,9 +94,38 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8815020450893982140}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300036, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+--- !u!65 &4956375968657935833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815020450893982140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0030011388, y: 0.0026920356, z: 0.0022704713}
+  m_Center: {x: -6.4355174e-11, y: -3.7516182e-10, z: -0.0010797007}
+--- !u!54 &6919105867745083244
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815020450893982140}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
