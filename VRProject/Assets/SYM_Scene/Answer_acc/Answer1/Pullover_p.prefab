@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8031626708485018069}
   - component: {fileID: 1280867420184328771}
   - component: {fileID: 4304107657594874798}
+  - component: {fileID: 4447138065339982091}
   m_Layer: 0
   m_Name: Pullover_p
   m_TagString: pullover_p
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 401c330f946d21840aaeda92799dfeb9, type: 2}
+  - {fileID: 2100000, guid: ad03cffc026301a46be99d30d819f4a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0022154872, y: 0.0074650953, z: 0.005869208}
   m_Center: {x: -0.000010921736, y: -0.0000025767367, z: -0.00053147017}
+--- !u!54 &4447138065339982091
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707227329866553292}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
