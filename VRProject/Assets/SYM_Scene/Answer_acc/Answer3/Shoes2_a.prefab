@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8816670947642153056}
   - component: {fileID: 8511832689508481801}
   m_Layer: 0
-  m_Name: Shoes2
+  m_Name: Shoes2_a
   m_TagString: shoes2_a
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32845783658c25747a0d5c032a913d55, type: 2}
+  - {fileID: 2100000, guid: 6a429f4f62cfb1746bda89698a3dd901, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

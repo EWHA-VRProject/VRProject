@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1431445004218160419}
   - component: {fileID: 4706112191131390472}
   m_Layer: 0
-  m_Name: Shortpants 1
+  m_Name: Shortpants_i
   m_TagString: shortpants_i
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

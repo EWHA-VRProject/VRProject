@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8960131911533580583
+--- !u!1 &8815020450893982140
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9145762644417537835}
-  - component: {fileID: 1021672743346396665}
-  - component: {fileID: 8329855800654955728}
-  - component: {fileID: 9161923149252204807}
+  - component: {fileID: 8807550262658658675}
+  - component: {fileID: 8709772997798681035}
+  - component: {fileID: 550301523775510719}
+  - component: {fileID: 8755217412373087011}
+  - component: {fileID: 4956375968657935833}
   m_Layer: 0
-  m_Name: T_shirt
-  m_TagString: t_shirt_b
+  m_Name: Hair_a_c
+  m_TagString: hair_a_c
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9145762644417537835
+--- !u!4 &8807550262658658675
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960131911533580583}
-  m_LocalRotation: {x: -0.5603861, y: 0.41592893, z: 0.3865788, w: 0.6029323}
-  m_LocalPosition: {x: -1.525, y: 0.46, z: -0.126}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_GameObject: {fileID: 8815020450893982140}
+  m_LocalRotation: {x: -0.6274395, y: 0.35693434, z: 0.329971, w: 0.60830647}
+  m_LocalPosition: {x: -1.0881, y: 0.33354, z: 0.10002}
+  m_LocalScale: {x: 150.71219, y: 150.71219, z: 150.71219}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -85.811, y: 69.199, z: 0}
---- !u!33 &1021672743346396665
+  m_LocalEulerAnglesHint: {x: -87.321, y: 154.427, z: -96.291}
+--- !u!33 &8709772997798681035
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960131911533580583}
-  m_Mesh: {fileID: 4300084, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
---- !u!23 &8329855800654955728
+  m_GameObject: {fileID: 8815020450893982140}
+  m_Mesh: {fileID: 4300036, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+--- !u!23 &550301523775510719
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960131911533580583}
+  m_GameObject: {fileID: 8815020450893982140}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dca33b01135e15542b8a9f01405acf2d, type: 2}
+  - {fileID: 2100000, guid: 9ffa9ebbb4b63804fbe234fe18d8016a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,17 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9161923149252204807
+--- !u!64 &8755217412373087011
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960131911533580583}
+  m_GameObject: {fileID: 8815020450893982140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300036, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+--- !u!65 &4956375968657935833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815020450893982140}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300084, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0030011388, y: 0.0026920356, z: 0.0022704713}
+  m_Center: {x: -6.4355174e-11, y: -3.7516182e-10, z: -0.0010797007}

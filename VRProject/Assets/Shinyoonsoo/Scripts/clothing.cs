@@ -935,7 +935,16 @@ public class clothing : MonoBehaviour
         GameObject accessories = other.gameObject;
         switch(accessories.tag) // 종류 판단
         {
-            case "shoes3_d":
+            case "chain1_d":
+            {   
+                shoes1.SetActive(false);
+                shoes2.SetActive(false);
+                shoes3.SetActive(true);
+                shoes3_texture = 3;
+                shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
+                break;
+            }
+            case "hair_a_c":
             {   
                 shoes1.SetActive(false);
                 shoes2.SetActive(false);
