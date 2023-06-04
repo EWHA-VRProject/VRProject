@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7569399313963923123}
   - component: {fileID: 440863896738918651}
   m_Layer: 0
-  m_Name: Shoes1_a
+  m_Name: Shoes1_i
   m_TagString: shoes1_a
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
