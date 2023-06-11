@@ -289,10 +289,56 @@ public static class VRInput
 
             }
         }
-
-
     }
 
+    // 진동 호출
+    public static void PlayVibration(float duration, float frequency, float amplitude, Controller hand)
+    {
+#if Oculus
+        if (CoroutineInstance.coroutineInstance == null)
+        {
+            GameObject coroutineObj = new GameObject("CoroutineInstance");
+            coroutineObj.AddComponent<CoroutineInstance>();
+        }
+        CoroutineInstance.coroutineInstance.StopAllCoroutines();
+        CoroutineInstance.coroutineInstance.StartCoroutine(VibrationCoroutine(duration, frequency, amplitude, hand));
+#endif
+    }
+
+    public static void PlayVibration(Controller hand)
+    {
+#if Ouclus
+        PlayVibration(0.06f, 1, 1, hand);
+#endif
+    }
+
+#if Oculus
+    static IEnumerator VibrationCoroutine(float duration, float frequency, float amplitude, Controller hand)
+    {
+        float currTime = 0;
+        while (currTime < duration)
+        {
+            currTime += Time.deltaTime;
+            OVRInput.SetControllerVibration(frequency, amplitude, (OVRInput.Controller)hand);
+            yield return null;
+        }
+        OVRInput.SetControllerVibration(0, 0, (OVRInput.Controller)hand);
+    }
+#endif
+}
+
+// 진동을 위한 코루틴 객체
+class CoroutineInstance : MonoBehaviour
+{
+    public static CoroutineInstance coroutineInstance = null;
+    private void Awake()
+    {
+        if(coroutineInstance == null)
+        {
+            coroutineInstance = this;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 }
 
 

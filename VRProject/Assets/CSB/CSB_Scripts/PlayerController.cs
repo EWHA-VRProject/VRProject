@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
     // Sound 관련 =====
     AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip audioClip0;
+    public AudioClip audioClip1;
 
     void Start()
     {
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.PlayOneShot(audioClip);
+                audioSource.PlayOneShot(audioClip0);
             }
         }
         else
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour
         //
         if(VRInput.GetUp(VRInput.Button.One, VRInput.Controller.RController))
         {
+            VRInput.PlayVibration(VRInput.Controller.RController);
             isGrab = false;
             target.GetComponent<Rigidbody>().isKinematic = false;
             target = null;
@@ -194,6 +196,7 @@ public class PlayerController : MonoBehaviour
     {
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
         {
+            VRInput.PlayVibration(VRInput.Controller.RController);
             child.Initialize();
             isAnsList.Clear();
             isList.Clear();
@@ -258,6 +261,8 @@ public class PlayerController : MonoBehaviour
     // 감옥 이동 관련 (왼쪽 Button.One) ===================
     public GameObject prisonPoint;
     bool isPrison = false;
+    public GameObject returnPos;
+
     void GoTOThePrison()
     {
         if(VRInput.GetDown(VRInput.Button.One, VRInput.Controller.LController))
@@ -269,7 +274,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                this.gameObject.transform.position = pos;
+                this.gameObject.transform.position = returnPos.transform.position;
                 isPrison = false;
             }
         }
@@ -281,6 +286,7 @@ public class PlayerController : MonoBehaviour
         // 한번 누르면 아이템 획득
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
         {
+            VRInput.PlayVibration(VRInput.Controller.LController);
             Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // 레이 쏘기
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))   // 만약 레이어가 item이면
