@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 pos;
+
     // 이동 관련 ========
     public float moveSpeed = 10f;   // 이동속력
     public float gravity = -10f;    // 중력가속도
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        pos = transform.position;
 
         answer = GameObject.FindWithTag("Answer");  // 정답 게임오브젝트
         answerChildren = answer.GetComponentsInChildren<Transform>(true);   // 정답의 자식 모두
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        pos = transform.position;
+
         // 레이저 발사 관련 ======================================
         // 충돌한 물체가 있으면 레이저 발사 (레이저는 마우스 또는 컨트롤러가 가리키는 방향으로 생성)
         VRInput.LaserPoint(crosshair);
@@ -243,7 +248,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                this.gameObject.transform.position = new Vector3(0, 1, 0);
+                this.gameObject.transform.position = pos;
                 isPrison = false;
             }
         }
