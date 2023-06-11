@@ -41,11 +41,16 @@ public class PlayerController : MonoBehaviour
     public bool isItem = false; // 잡고 있는지 여부
     GameObject item;
 
+    // Sound 관련 =====
+    AudioSource audioSource;
+    public AudioClip audioClip;
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
         pos = transform.position;
+
+        audioSource = GetComponent<AudioSource>();
 
         answer = GameObject.FindWithTag("Answer");  // 정답 게임오브젝트
         answerChildren = answer.GetComponentsInChildren<Transform>(true);   // 정답의 자식 모두
@@ -85,6 +90,18 @@ public class PlayerController : MonoBehaviour
         dir.y = yVelocity;
 
         cc.Move(dir * moveSpeed * Time.deltaTime);
+        if(pos != transform.position)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
+        }
+        else
+        {
+            audioSource.Pause();
+        }
+
 
         // 타겟 잡기 관련 ============================================
         if (!isGrab)    // 잡은 것이 없는 경우
