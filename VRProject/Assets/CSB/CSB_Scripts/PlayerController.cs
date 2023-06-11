@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -100,7 +101,10 @@ public class PlayerController : MonoBehaviour
         // 최종 선택 관련 =========
         MakeAChoice();
 
-        GoTOThePrison();
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            GoTOThePrison();
+        }
 
         // 아이템 잡기 관련 ============================================
         if (!isItem)    // 잡은 것이 없는 경우
