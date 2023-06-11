@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4883051918686676211}
   - component: {fileID: 2754265940500638589}
   m_Layer: 0
-  m_Name: Shoes1_i
-  m_TagString: shoes1_a
+  m_Name: Shoes1_h
+  m_TagString: shoes1_h
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8337058659957241582}
   m_LocalRotation: {x: -0.6072278, y: 0.38141188, z: 0.4508144, w: 0.53156906}
-  m_LocalPosition: {x: -3.0901968, y: 0.016190106, z: 0.9215985}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: -3.0576, y: -0.066005, z: 0.88208}
+  m_LocalScale: {x: 306.77448, y: 306.77448, z: 306.77448}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd2ebbd37167e348a23e9419a0842c3, type: 2}
+  - {fileID: 2100000, guid: 96d4e5baafb75f748a667a508138848c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

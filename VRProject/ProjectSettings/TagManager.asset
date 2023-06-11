@@ -5,12 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - glasses1_a
-  - shoes1_a
   - hair_c_a
   - shortpants_i
   - trousers_c
   - chain1_d
-  - shortpants_a
   - waypoint
   - shoes3_c
   - shirt_a
@@ -23,6 +21,11 @@ TagManager:
   - Target
   - Answer
   - Item
+  - shoes1_h
+  - shortpants_e
+  - shoes3_d
+  - pickuppoint
+  - shortpants_a
   layers:
   - Default
   - TransparentFX
