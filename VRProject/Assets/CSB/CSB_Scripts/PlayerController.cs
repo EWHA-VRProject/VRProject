@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     // Sound ฐüทร =====
     AudioSource audioSource;
     public AudioClip audioClip0;
-    public AudioClip audioClip1;
 
     void Start()
     {

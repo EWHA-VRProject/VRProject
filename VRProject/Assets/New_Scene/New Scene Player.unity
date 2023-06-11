@@ -5795,7 +5795,7 @@ MonoBehaviour:
   crosshair: {fileID: 509483182}
   isItem: 0
   audioClip0: {fileID: 8300000, guid: f0fba75baf76a514da1e094bc11a31be, type: 3}
-  audioClip1: {fileID: 8300000, guid: 3e80b7f792dfd5940a009b8c92026119, type: 3}
+  audioClip1: {fileID: 8300000, guid: 9d255dbf95218104a87ea1459a9c60aa, type: 3}
   prisonPoint: {fileID: 618187340}
   returnPos: {fileID: 873499957}
 --- !u!143 &1040563310
@@ -5826,7 +5826,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f0fba75baf76a514da1e094bc11a31be, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d255dbf95218104a87ea1459a9c60aa, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
