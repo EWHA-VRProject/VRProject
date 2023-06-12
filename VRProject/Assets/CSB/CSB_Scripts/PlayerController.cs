@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     public AudioClip audioClip0;
 
+
     void Start()
     {
         inv=GameObject.FindGameObjectWithTag("invM").GetComponent<Inventory>();
@@ -309,8 +310,14 @@ public class PlayerController : MonoBehaviour
             {
                 
                 Item itemCatched = hitInfo.transform.GetComponent<ItemPickUp>().item;
+                GameObject itemC = hitInfo.transform.gameObject;
                 if (itemCatched)
                 {
+
+                    Renderer itemRenderer = itemC.GetComponent<Renderer>();
+                    if(itemRenderer!=null){
+                        itemRenderer.enabled=false;
+                    }
                     //hitInfo.transform.CompareTag("Item")
                     // �κ��丮��
                     print(itemCatched.itemName);
