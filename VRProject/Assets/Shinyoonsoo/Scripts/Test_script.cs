@@ -212,7 +212,6 @@ public class Test_script : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, aim_point.transform.position) > 0.25f) 
                 {
-                    Debug.Log("going to run");
                     agent.speed = run_speed;
                     agent.SetDestination(aim_point.transform.position);
                     ani.SetInteger("arms", 2);
