@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220bbeaed595d420397032ab5086641e, type: 3}
+  m_Name: Chain1_d
+  m_EditorClassIdentifier: 
+  item: {fileID: 4415263705005589778, guid: 3479a61b43abc4504824f24993c76fb0, type: 3}
+  itemName: Chain1_d
+  itemImage: {fileID: 21300000, guid: fc7f330c20c2841ff86486956e9f6e82, type: 3}
