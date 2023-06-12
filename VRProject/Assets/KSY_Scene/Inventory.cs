@@ -46,6 +46,7 @@ public class Inventory : MonoBehaviour
         items.RemoveAt(0);
         FreshSlot();
         SelectedItem= _item;
+        //클릭한 타겟 컴포넌트로 받아서 거기에 아이템 적용
     }
     public void ClickSlot2(){
         Item _item=items[1];
