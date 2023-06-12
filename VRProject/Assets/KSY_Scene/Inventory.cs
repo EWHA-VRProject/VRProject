@@ -43,27 +43,51 @@ public class Inventory : MonoBehaviour
     }
     public void ClickSlot1(){
         Item _item=items[0];
-        items.RemoveAt(0);
-        FreshSlot();
-        SelectedItem= _item;
-        //클릭한 타겟 컴포넌트로 받아서 거기에 아이템 적용
+        if(_item){
+            items.RemoveAt(0);
+            FreshSlot();
+            SelectedItem= _item;
+            //클릭한 타겟 컴포넌트로 받아서 거기에 아이템 적용
+        }
     }
     public void ClickSlot2(){
         Item _item=items[1];
-        items.RemoveAt(1);
-        FreshSlot();
-        SelectedItem= _item;
+        if(_item){
+            items.RemoveAt(1);
+            FreshSlot();
+            SelectedItem= _item;
+        }
     }
     public void ClickSlot3(){
         Item _item=items[2];
-        items.RemoveAt(2);
-        FreshSlot();
-        SelectedItem= _item;
+        if(_item){
+            items.RemoveAt(2);
+            FreshSlot();
+            SelectedItem= _item;
+        }
+    }
+    public void ClickSlot4(){
+        Item _item=items[3];
+        if(_item){
+            items.RemoveAt(3);
+            FreshSlot();
+            SelectedItem= _item;
+        }
+    }
+    public void ClickSlot5(){
+        Item _item=items[4];
+        if(_item){
+            items.RemoveAt(4);
+            FreshSlot();
+            SelectedItem= _item;
+        }
     }
 
     public void DeleteAll(){
         items.Clear();
-        FreshSlot();
+        for (int i=0; i < slots.Length; i++) {
+            slots[i].item = null;
+        }
     }
 
 

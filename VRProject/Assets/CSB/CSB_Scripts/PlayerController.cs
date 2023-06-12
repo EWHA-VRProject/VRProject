@@ -8,22 +8,22 @@ public class PlayerController : MonoBehaviour
 {
     Vector3 pos;
 
-    // ÀÌµ¿ °ü·Ã ========
-    public float moveSpeed = 10f;   // ÀÌµ¿¼Ó·Â
-    public float gravity = -10f;    // Áß·Â°¡¼Óµµ
-    public float jumpPower = 1f;    // Á¡ÇÁ Èû
-    float yVelocity = 0;    // y¹æÇâ ¼Ó·Â
+    // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ========
+    public float moveSpeed = 10f;   // ï¿½Ìµï¿½ï¿½Ó·ï¿½
+    public float gravity = -10f;    // ï¿½ß·Â°ï¿½ï¿½Óµï¿½
+    public float jumpPower = 1f;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    float yVelocity = 0;    // yï¿½ï¿½ï¿½ï¿½ ï¿½Ó·ï¿½
 
     CharacterController cc;
 
-    // Å¸°Ù Àâ±â °ü·Ã ====================================
-    public bool isGrab = false; // Àâ°í ÀÖ´ÂÁö ¿©ºÎ
-    public float range = 0.1f;  // ÀâÀ» ¼ö ÀÖ´Â ¹üÀ§
+    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ====================================
+    public bool isGrab = false; // ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float range = 0.1f;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject prison;
-    // ¸¸¾à¿¡ tag°¡ TargetÀÌ¸é °¨¿ÁÀ¸·Î -> °¨¿ÁÀº List·Î 
+    // ï¿½ï¿½ï¿½à¿¡ tagï¿½ï¿½ Targetï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Listï¿½ï¿½ 
     public List<GameObject> targets = new List<GameObject>();
 
-    // Á¤´ä È®ÀÎ °ü·Ã =====================
+    // ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ =====================
     public GameObject answer;
     public Transform[] answerChildren;
     public Transform[] child;
@@ -34,26 +34,29 @@ public class PlayerController : MonoBehaviour
 
     GameObject target;
 
-    // ÃÊÁ¡ °ü·Ã ==========================
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ==========================
     public Transform crosshair;
 
-    // ¾ÆÀÌÅÛ Àâ±â °ü·Ã =========
-    public bool isItem = false; // Àâ°í ÀÖ´ÂÁö ¿©ºÎ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ =========
+    public bool isItem = false; // ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     GameObject item;
+    public Inventory inventoryScript;
+    
 
-    // Sound °ü·Ã =====
+    // Sound ï¿½ï¿½ï¿½ï¿½ =====
     AudioSource audioSource;
     public AudioClip audioClip0;
 
     void Start()
     {
+        inventoryScript=GetComponent<Inventory>();
         cc = GetComponent<CharacterController>();
         pos = transform.position;
 
         audioSource = GetComponent<AudioSource>();
 
-        answer = GameObject.FindWithTag("Answer");  // Á¤´ä °ÔÀÓ¿ÀºêÁ§Æ®
-        answerChildren = answer.GetComponentsInChildren<Transform>(true);   // Á¤´äÀÇ ÀÚ½Ä ¸ðµÎ
+        answer = GameObject.FindWithTag("Answer");  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+        answerChildren = answer.GetComponentsInChildren<Transform>(true);   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½
 
     }
 
@@ -61,27 +64,27 @@ public class PlayerController : MonoBehaviour
     {
         pos = transform.position;
 
-        // ·¹ÀÌÀú ¹ß»ç °ü·Ã ======================================
-        // Ãæµ¹ÇÑ ¹°Ã¼°¡ ÀÖÀ¸¸é ·¹ÀÌÀú ¹ß»ç (·¹ÀÌÀú´Â ¸¶¿ì½º ¶Ç´Â ÄÁÆ®·Ñ·¯°¡ °¡¸®Å°´Â ¹æÇâÀ¸·Î »ý¼º)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ======================================
+        // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ç´ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         VRInput.LaserPoint(crosshair);
 
 
-        // »óÇÏÁÂ¿ì ÀÌµ¿ °ü·Ã ==================================
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ==================================
         float h = VRInput.GetAxis("Horizontal");
         float v = VRInput.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
-        dir = Camera.main.transform.TransformDirection(dir);    // Ä«¸Þ¶ó°¡ ¹Ù¶óº¸´Â ¹æÇâÀ» ±âÁØÀ¸·Î ÇÏ±â À§ÇÔ
+        dir = Camera.main.transform.TransformDirection(dir);    // Ä«ï¿½Þ¶ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         yVelocity += gravity * Time.deltaTime;
 
-        // ¹Ù´Ú¿¡ ÀÖÀ¸¸é ¼öÁ÷¼Óµµ 0À¸·Î
+        // ï¿½Ù´Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ 0ï¿½ï¿½ï¿½ï¿½
         if (cc.isGrounded)
         {
             yVelocity = 0;
         }
 
-        // Á¡ÇÁ, PCÀÏ °æ¿ì ½ºÆäÀÌ½º ¹Ù, OculusÀÏ °æ¿ì ¿À¸¥ÂÊ Button.Two Á¡ÇÁ ¹öÆ° Å¬¸¯
+        // ï¿½ï¿½ï¿½ï¿½, PCï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½, Oculusï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Button.Two ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½
         if(VRInput.GetDown(VRInput.Button.Two, VRInput.Controller.RController))
         {
             yVelocity = jumpPower;
@@ -103,19 +106,19 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // Å¸°Ù Àâ±â °ü·Ã ============================================
-        if (!isGrab)    // ÀâÀº °ÍÀÌ ¾ø´Â °æ¿ì
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ============================================
+        if (!isGrab)    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         {
-            // Àâ±â
+            // ï¿½ï¿½ï¿½
             Grab();
         }
         else
         {
-            // ³õ±â
+            // ï¿½ï¿½ï¿½ï¿½
             UnGrab();
         }
 
-        // ÃÖÁ¾ ¼±ÅÃ °ü·Ã =========
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ =========
         MakeAChoice();
 
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -123,21 +126,21 @@ public class PlayerController : MonoBehaviour
             GoTOThePrison();
         }
 
-        // ¾ÆÀÌÅÛ Àâ±â °ü·Ã ============================================
-        if (!isItem)    // ÀâÀº °ÍÀÌ ¾ø´Â °æ¿ì
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ============================================
+        if (!isItem)    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         {
-            // Àâ±â
+            // ï¿½ï¿½ï¿½
             DragAnItem();
         }
         else
         {
-            // ³õ±â
+            // ï¿½ï¿½ï¿½ï¿½
             CatchAnItem();
         }
 
     }
 
-    // Å¸°Ù Àâ±â °ü·Ã ÇÔ¼ö (¿À¸¥ÂÊ Button.One) ========================================================
+    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Button.One) ========================================================
     void UnGrab()
     {
         //
@@ -150,15 +153,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Å¸°Ù Àâ±â (¿À¸¥ÂÊ Button.One)
-    // - layer°¡ targetÀÏ °æ¿ì °¨¿ÁÀ¸·Î, ¸¸¾à °¨¿ÁÀÌ ´Ù Ã¡À¸¸é °¨¿ÁÀÌ ´Ù Ã¡´Ù°í ¾Ë·ÁÁÜ
+    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Button.One)
+    // - layerï¿½ï¿½ targetï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¡ï¿½Ù°ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½
     void Grab()
     {
         if (VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RController))
         {
-            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ·¹ÀÌ ½î±â
+            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             RaycastHit hitInfo;
-            if(Physics.Raycast(ray, out hitInfo))   // ¸¸¾à ·¹ÀÌ¾î°¡ targetÀÌ¸é
+            if(Physics.Raycast(ray, out hitInfo))   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î°¡ targetï¿½Ì¸ï¿½
             {
                 if(hitInfo.transform.CompareTag("Target") || hitInfo.transform.CompareTag("Answer"))
                 {
@@ -169,35 +172,35 @@ public class PlayerController : MonoBehaviour
                     Test_script test = target.GetComponent<Test_script>();
                     print(1);
                     test.StartCoroutine(test.stop_execute());
-/*                    // °¨¿ÁÀ¸·Î
+/*                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     isGrab = false;
                     target = hitInfo.transform.gameObject;
-                    // ¸¸¾à °¨¿ÁÀÌ ´Ù Ã¡À¸¸é "°¨¿ÁÀÌ ´ÙÃ¡À½" ¾Ë·ÁÁÜ
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¡ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¡ï¿½ï¿½" ï¿½Ë·ï¿½ï¿½ï¿½
                     if (targets.Count >= 3)
                     {
-                        print("°¨¿Á ´ÙÂü");
+                        print("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                     }
                     else
                     {
-                        targets.Add(target);    // °¨¿Á (Å¸°Ù ¸®½ºÆ®)¿¡ Ãß°¡
-                        // »õ·Î Ãß°¡ÇÑ ¾ÆÀÌÀÇ ÀÎµ¦½º == ¸®½ºÆ®ÀÇ ¸¶Áö¸· ÀÎµ¦½º
+                        targets.Add(target);    // ï¿½ï¿½ï¿½ï¿½ (Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®)ï¿½ï¿½ ï¿½ß°ï¿½
+                        // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ == ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
                         int index = targets.Count - 1;
-                        // ÀÚ½ÅÀÇ ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â Prison °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ ÀÚ½Ä ÀÎµ¦½º·Î À§Ä¡ ÀÌµ¿
+                        // ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ Prison ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ìµï¿½
                         target.transform.position = prison.transform.GetChild(index).position;
-                        //target.SetActive(false);    // ºñÈ°¼ºÈ­
-                        print("Àâ¾Ò´Ù ¿ä³ð");
+                        //target.SetActive(false);    // ï¿½ï¿½È°ï¿½ï¿½È­
+                        print("ï¿½ï¿½Ò´ï¿½ ï¿½ï¿½ï¿½");
                     }*/
                 }
                 else
                 {
-                    print("ÀÌ°Å ¾Æ´Ô");
+                    print("ï¿½Ì°ï¿½ ï¿½Æ´ï¿½");
                 }
 
             }
         }
     }
 
-    // ÃÖÁ¾ ¼±ÅÃ °ü·Ã ÇÔ¼ö (¿À¸¥ÂÊ IndexTrigger) ================================
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IndexTrigger) ================================
     void MakeAChoice()
     {
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
@@ -207,15 +210,15 @@ public class PlayerController : MonoBehaviour
             isAnsList.Clear();
             isList.Clear();
 
-            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ·¹ÀÌ ½î±â
+            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
                 foreach (Transform child in answerChildren)
                 {
-                    isAnsList.Add(child.gameObject.activeSelf); // Á¤´äÀÇ ÀÚ½Äµé bool °ª (È°¼ºÈ­ ¿©ºÎ)
+                    isAnsList.Add(child.gameObject.activeSelf); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ bool ï¿½ï¿½ (È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½)
                 }
-                child = hitInfo.transform.GetComponentsInChildren<Transform>(true);  // ·¹ÀÌ ÀÚ½Ä ¿ÀºêÁ§Æ® ¸ðµÎ
+                child = hitInfo.transform.GetComponentsInChildren<Transform>(true);  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
                 foreach (Transform child in child)
                 {
                     isList.Add(child.gameObject.activeSelf);
@@ -223,24 +226,24 @@ public class PlayerController : MonoBehaviour
 
                 // 
 
-                if (hitInfo.transform.CompareTag("Answer")) // ÅÂ±×°¡ "Answer"ÀÌ¸é
+                if (hitInfo.transform.CompareTag("Answer")) // ï¿½Â±×°ï¿½ "Answer"ï¿½Ì¸ï¿½
                 {
-                    print("Á¤´ä");
+                    print("ï¿½ï¿½ï¿½ï¿½");
                 }
                 else if(hitInfo.transform.CompareTag("Target"))
                 {
-                    print("½ÇÆÐ");
+                    print("ï¿½ï¿½ï¿½ï¿½");
                 }
                 else if (isList.SequenceEqual(isAnsList))
                 {
                     List<bool> isAllTrue = new List<bool>();
-                    // ÅØ½ºÃÄ±îÁö °°ÀºÁö È®ÀÎ
-                    // SetActive °¡ true ÀÎ ¿ÀºêÁ§Æ®µé Ã£¾Æ¼­ ÅØ½ºÃÄ µ¿ÀÏÇÑÁö È®ÀÎ
+                    // ï¿½Ø½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+                    // SetActive ï¿½ï¿½ true ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
                     for (int i = 0; i < isList.Count; i++)
                     {
                         if (child[i].gameObject.GetComponent<SkinnedMeshRenderer>() == null)
                         {
-                            print("¾Æ´Ï¾ß");
+                            print("ï¿½Æ´Ï¾ï¿½");
                         }
                         else if (child[i].gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture == answerChildren[i].gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture)
                         {
@@ -248,14 +251,14 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            print("¿©±ä?");
+                            print("ï¿½ï¿½ï¿½ï¿½?");
                             isAllTrue.Add(false);
                         }
 
                     }
                     if(isAllTrue.All(element => element == true))
                     {
-                        print("ÂðÁ¤´ä");
+                        print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                     
 
@@ -264,7 +267,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // °¨¿Á ÀÌµ¿ °ü·Ã (¿ÞÂÊ Button.One) ===================
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ Button.One) ===================
     public GameObject prisonPoint;
     bool isPrison = false;
     public GameObject returnPos;
@@ -286,25 +289,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ¾ÆÀÌÅÛ Àâ±â °ü·Ã (¿ÞÂÊ IndexTrigger) ==================
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ IndexTrigger) ==================
     void CatchAnItem()
     {
-        // ÇÑ¹ø ´©¸£¸é ¾ÆÀÌÅÛ È¹µæ
+        // ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
         {
             VRInput.PlayVibration(VRInput.Controller.LController);
-            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // ·¹ÀÌ ½î±â
+            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))   // ¸¸¾à ·¹ÀÌ¾î°¡ itemÀÌ¸é
+            if (Physics.Raycast(ray, out hitInfo))   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î°¡ itemï¿½Ì¸ï¿½
             {
-                if (hitInfo.transform.CompareTag("Item"))
+                
+                if (hitInfo.transform.GetComponent<ItemPickUp>())
                 {
-                    // ÀÎº¥Åä¸®·Î
-                    isItem = false;
-                    item = hitInfo.transform.gameObject;
-
-
-                    // ***** ¾ÆÀÌÅÛ ÀÎº¥Åä¸®·Î Ãß°¡ ******
+                    //hitInfo.transform.CompareTag("Item")
+                    // ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½
+                    isItem = true;
+                    Item itemCatched = hitInfo.transform.GetComponent<ItemPickUp>().item;
+                    inventoryScript.AddItem(itemCatched);
+                    // ***** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ß°ï¿½ ******
                 }
             }
         }
@@ -320,23 +324,23 @@ public class PlayerController : MonoBehaviour
 
     void DragAnItem()
     {        
-        // ²Ú ´©¸£¸é ¾ÆÀÌÅÛ µå·¡±×
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½å·¡ï¿½ï¿½
         if (VRInput.Get(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
         {
-            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // ·¹ÀÌ ½î±â
+            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))   // ¸¸¾à ·¹ÀÌ¾î°¡ itemÀÌ¸é
+            if (Physics.Raycast(ray, out hitInfo))   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î°¡ itemï¿½Ì¸ï¿½
             {
                 if (hitInfo.transform.CompareTag("Item"))
                 {
                     isItem = true;
 
-                    // ÄÁÆ®·Ñ·¯°¡ ÇâÇÏ´Â ¹æÇâ µû¶ó ÀÌµ¿
+                    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
                     item = hitInfo.transform.gameObject;
                     item.transform.parent = VRInput.LHand;
                     item.GetComponent<Rigidbody>().isKinematic = true;
 
-                    // ***** ¾ÆÀÌÅÛ ÀÎº¥Åä¸®·Î Ãß°¡ ******
+                    // ***** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ß°ï¿½ ******
                 }
             }
         }
@@ -344,5 +348,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // ÀÎº¥Åä¸® ¿­±â (¿ÞÂÊ Button.Two) =================
+    // ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ Button.Two) =================
 }

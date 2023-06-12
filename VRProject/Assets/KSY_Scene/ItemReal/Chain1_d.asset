@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 4415263705005589778, guid: 3479a61b43abc4504824f24993c76fb0, type: 3}
   itemName: Chain1_d
-  itemImage: {fileID: 21300000, guid: 22dc5c539551841f4934147a19849743, type: 3}
+  itemImage: {fileID: 21300000, guid: fc7f330c20c2841ff86486956e9f6e82, type: 3}
