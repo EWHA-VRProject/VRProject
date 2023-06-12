@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
@@ -126,7 +127,8 @@ public class PlayerController : MonoBehaviour
             GoTOThePrison();
         }
 
-        // ������ ��� ���� ============================================
+        CatchAnItem();
+/*        // ������ ��� ���� ============================================
         if (!isItem)    // ���� ���� ���� ���
         {
             // ���
@@ -136,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             // ����
             CatchAnItem();
-        }
+        }*/
 
     }
 
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    NavMeshAgent agent;
     // Ÿ�� ��� (������ Button.One)
     // - layer�� target�� ��� ��������, ���� ������ �� á���� ������ �� á�ٰ� �˷���
     void Grab()
@@ -168,10 +171,12 @@ public class PlayerController : MonoBehaviour
                     isGrab = false;
 
                     target = hitInfo.transform.gameObject;
-
+                    agent = target.GetComponent<NavMeshAgent>();
+                    agent.speed = 0;
                     Test_script test = target.GetComponent<Test_script>();
                     print(1);
                     test.StartCoroutine(test.stop_execute());
+
 /*                    // ��������
                     isGrab = false;
                     target = hitInfo.transform.gameObject;
@@ -193,7 +198,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    print("�̰� �ƴ�");
+                    Debug.Log("grab hhh");
                 }
 
             }
@@ -228,11 +233,11 @@ public class PlayerController : MonoBehaviour
 
                 if (hitInfo.transform.CompareTag("Answer")) // �±װ� "Answer"�̸�
                 {
-                    print("����");
+                    Debug.Log("answer hhh");
                 }
                 else if(hitInfo.transform.CompareTag("Target"))
                 {
-                    print("����");
+                    Debug.Log("target hhh");
                 }
                 else if (isList.SequenceEqual(isAnsList))
                 {
@@ -300,9 +305,10 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))   // ���� ���̾ item�̸�
             {
-                
-                if (hitInfo.transform.GetComponent<ItemPickUp>())
+                Debug.Log("HERE");
+                if (hitInfo.transform.GetComponent<ItemPickUp>().item)
                 {
+                    print(2);
                     //hitInfo.transform.CompareTag("Item")
                     // �κ��丮��
                     isItem = true;
@@ -322,7 +328,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void DragAnItem()
+/*    void DragAnItem()
     {        
         // �� ������ ������ �巡��
         if (VRInput.Get(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
@@ -346,7 +352,7 @@ public class PlayerController : MonoBehaviour
         }
         //
 
-    }
+    }*/
 
     // �κ��丮 ���� (���� Button.Two) =================
 }

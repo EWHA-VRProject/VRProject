@@ -110,6 +110,7 @@ public class Test_script : MonoBehaviour
         print(11);
         yield return new WaitForSeconds(0);
 
+        print("여기");
         agent.speed = 0;
         ani.SetInteger("legs", 0);
         ani.SetInteger("arms", 0);
