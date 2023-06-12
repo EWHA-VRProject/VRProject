@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour
     // ������ ��� ���� =========
     public bool isItem = false; // ��� �ִ��� ����
     GameObject item;
-    public Inventory inventoryScript;
+    // public Inventory inventoryM=GameObject.Find("InventoryM").GetComponent<Inventory>;
     
+    
+    public Inventory inv ;
 
     // Sound ���� =====
     AudioSource audioSource;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        inventoryScript=GetComponent<Inventory>();
+        inv=GameObject.FindGameObjectWithTag("invM").GetComponent<Inventory>();
         cc = GetComponent<CharacterController>();
         pos = transform.position;
 
@@ -305,25 +307,24 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))   // ���� ���̾ item�̸�
             {
-                Debug.Log("HERE");
-                if (hitInfo.transform.GetComponent<ItemPickUp>().item)
+                
+                Item itemCatched = hitInfo.transform.GetComponent<ItemPickUp>().item;
+                if (itemCatched)
                 {
-                    print(2);
                     //hitInfo.transform.CompareTag("Item")
                     // �κ��丮��
-                    isItem = true;
-                    Item itemCatched = hitInfo.transform.GetComponent<ItemPickUp>().item;
-                    inventoryScript.AddItem(itemCatched);
+                    print(itemCatched.itemName);
+                    inv.AddItem(itemCatched);
                     // ***** ������ �κ��丮�� �߰� ******
                 }
             }
         }
         if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
         {
-            isItem = false;
-            item.GetComponent<Rigidbody>().isKinematic = false;
-            item.transform.parent = null;
-            item = null;
+                    // isItem = false;
+                    // item.GetComponent<Rigidbody>().isKinematic = false;
+                    // item.transform.parent = null;
+                    // item = null;
 
         }
     }

@@ -26,6 +26,7 @@ TagManager:
   - shoes3_d
   - pickuppoint
   - shortpants_a
+  - invM
   layers:
   - Default
   - TransparentFX

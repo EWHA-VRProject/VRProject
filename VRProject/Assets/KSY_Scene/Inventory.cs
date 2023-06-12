@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void AddItem(Item _item) {
+        print("in");
         if (items.Count < slots.Length) {
             items.Add(_item);
             FreshSlot();
