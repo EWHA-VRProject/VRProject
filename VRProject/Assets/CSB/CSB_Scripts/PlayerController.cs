@@ -171,11 +171,9 @@ public class PlayerController : MonoBehaviour
                     isGrab = false;
 
                     target = hitInfo.transform.gameObject;
-                    agent = target.GetComponent<NavMeshAgent>();
-                    agent.speed = 0;
                     Test_script test = target.GetComponent<Test_script>();
                     print(1);
-                    test.StartCoroutine(test.stop_execute());
+                    test.playerTouched = true;
 
 /*                    // ��������
                     isGrab = false;
