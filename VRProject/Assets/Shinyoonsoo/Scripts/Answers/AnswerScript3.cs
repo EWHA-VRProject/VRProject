@@ -53,7 +53,7 @@ public class AnswerScript3 : MonoBehaviour
 
     //shoes2
     int shoes = 1;
-    int shoes2_texture = 8;
+    int shoes2_texture = 5;
 
     //glasses
     int glasses_texture = 3;

@@ -51,7 +51,7 @@ public class AnswerScript2 : MonoBehaviour
 
     //shoes1
     int shoes = 0;
-    int shoes1_texture = 8;
+    int shoes1_texture = 7;
 
 
     void Start()
