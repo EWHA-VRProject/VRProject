@@ -131,13 +131,6 @@ public class Test_script : MonoBehaviour
             return;
         }
 
-     
-        if (Vector3.Distance(transform.position,player.position) < 0.5f) // 플레이어와 닿는 경우
-        {
-            Debug.Log("Touched"); // 플레이어와 터치되었다고 로그에 띄워줌
-            playerTouched = true; // 플레이어와 터치되었다고 표지 켜줌
-        }
-
         if(playerTouched) // 만약 플레이어가 터치했다면
         {
             agent.speed = 0;
