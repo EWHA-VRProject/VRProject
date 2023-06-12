@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hair_a_c
   m_EditorClassIdentifier: 
   item: {fileID: 8815020450893982140, guid: dbae87256b3704035966c153ca8cfb74, type: 3}
-  itemName: Hair_a
+  itemName: Hair_a_c
   itemImage: {fileID: 21300000, guid: c520475f59acb4cc1b8fce52357c9e41, type: 3}

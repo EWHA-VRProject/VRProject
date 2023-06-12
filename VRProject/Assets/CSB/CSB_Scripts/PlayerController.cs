@@ -44,7 +44,8 @@ public class PlayerController : MonoBehaviour
     // public Inventory inventoryM=GameObject.Find("InventoryM").GetComponent<Inventory>;
     
     
-    public Inventory inv ;
+    public Inventory inv;
+    //public Clothing cloth;
 
     // Sound ���� =====
     AudioSource audioSource;
@@ -172,10 +173,20 @@ public class PlayerController : MonoBehaviour
                 if(hitInfo.transform.CompareTag("Target") || hitInfo.transform.CompareTag("Answer"))
                 {
                     isGrab = false;
-
                     target = hitInfo.transform.gameObject;
                     Test_script test = target.GetComponent<Test_script>();
-                    print(1);
+                    //print(inv.SelectedItem);
+                    if(inv.SelectedItem){//아이템 쥐고있으면
+                        print(inv.SelectedItemRenderer);
+                        if(inv.SelectedItemRenderer){
+                            //print("여기 들어옴");
+                            inv.SelectedItemRenderer.enabled=true;
+                        }
+                        clothing targetClothing = target.GetComponent<clothing>();
+                        targetClothing.DressItem(inv.SelectedItem);
+                        inv.SelectedItem=null;
+                        inv.SelectedItemRenderer=null;
+                    }
                     test.playerTouched = true;
 
 /*                    // ��������
@@ -199,7 +210,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("grab hhh");
+                    ///Debug.Log("grab hhh");
                 }
 
             }
@@ -311,15 +322,14 @@ public class PlayerController : MonoBehaviour
                 GameObject itemC = hitInfo.transform.gameObject;
                 if (itemCatched)
                 {
-
                     Renderer itemRenderer = itemC.GetComponent<Renderer>();
                     if(itemRenderer!=null){
                         itemRenderer.enabled=false;
                     }
                     //hitInfo.transform.CompareTag("Item")
                     // �κ��丮��
-                    print(itemCatched.itemName);
-                    inv.AddItem(itemCatched);
+                    //print(itemCatched.itemName);
+                    inv.AddItem(itemCatched,itemRenderer);
                     // ***** ������ �κ��丮�� �߰� ******
                 }
             }

@@ -107,10 +107,10 @@ public class Test_script : MonoBehaviour
 
     public IEnumerator stop_execute()
     {
-        print(11);
+        //print(11);
         yield return new WaitForSeconds(0);
 
-        print("여기");
+        //print("여기");
         agent.speed = 0;
         ani.SetInteger("legs", 0);
         ani.SetInteger("arms", 0);

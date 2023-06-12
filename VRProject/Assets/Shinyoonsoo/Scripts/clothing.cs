@@ -880,4 +880,145 @@ public class clothing : MonoBehaviour
         }
     }
 
+    public void DressItem (Item item)
+    
+    {
+        print(item.itemName);
+        switch(item.itemName) // 종류 판단
+        {
+            case "Chain1_d":
+            {   
+                chain1.SetActive(true);
+                chain2.SetActive(false);
+                chain3.SetActive(false);
+
+                chain1_texture = 3;
+                chain1.GetComponent<Renderer>().materials[0].mainTexture = chain1_textures[chain1_texture];
+                break;
+            }
+            case "Hair_a_c":
+            {   
+                hair_a.SetActive(true);
+                hair_b.SetActive(false);
+                hair_c.SetActive(false);
+                hair_d.SetActive(false);
+                hair_e.SetActive(false);
+                hair_a.GetComponent<Renderer>().materials[0].mainTexture = hair_a_textures[2];
+                break;
+            }
+            case "Pullover_p":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(true);
+                shirt.SetActive(false);
+                t_shirt.SetActive(false);
+                tank_top.SetActive(false);
+                pullover.GetComponent<Renderer>().materials[0].mainTexture = pullover_textures[15]; // pullover texture       
+                break;
+            }
+            case "Shoes3_c":
+            {   
+                shoes1.SetActive(false);
+                shoes2.SetActive(false);
+                shoes3.SetActive(true);
+                shoes3_texture = 2;
+                shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
+                break;
+            }
+            case "Shortpants_i":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                shortpants_texture = 8;
+                shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[8]; // short pants texture
+                break;
+            }
+            //Answer 2
+            case "Hair_c_a":
+            {   
+                hair_a.SetActive(false);
+                hair_b.SetActive(false);
+                hair_c.SetActive(true);
+                hair_d.SetActive(false);
+                hair_e.SetActive(false);
+                hair_c.GetComponent<Renderer>().materials[0].mainTexture = hair_c_textures[1];
+                break;
+            }
+            case "Shirt_h":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(false);
+                shirt.SetActive(true);
+                t_shirt.SetActive(false);
+                tank_top.SetActive(false);
+                shirt_texture = 7;
+                shirt.GetComponent<Renderer>().materials[0].mainTexture = shirt_textures[shirt_texture]; // pullover texture       
+                break;
+            }
+            case "Shoes 1_h":
+            {   
+                shoes1.SetActive(true);
+                shoes2.SetActive(false);
+                shoes3.SetActive(false);
+                shoes1_texture = 8;
+                shoes1.GetComponent<Renderer>().materials[0].mainTexture = shoes1_textures[shoes1_texture]; // shoes1 texture
+                break;
+            }
+            case "Shortpants_e":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                shortpants_texture = 4;
+                shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
+                break;
+            }
+            //Answer3
+            case "Glasses1_a":
+            {   
+                glasses.SetActive(true);
+                glasses_texture = 3;
+                glasses.GetComponent<Renderer>().materials[0].mainTexture = glasses_textures[glasses_texture]; // pullover texture   
+                break;
+            }
+            case "Hair_d_b":
+            {   
+                hair_a.SetActive(false);
+                hair_b.SetActive(false);
+                hair_c.SetActive(false);
+                hair_d.SetActive(true);
+                hair_e.SetActive(false);
+                hair_d.GetComponent<Renderer>().materials[0].mainTexture = hair_d_textures[1];
+                break;
+            }
+            case "Shoes2_i":
+            {   
+                shoes1.SetActive(false);
+                shoes2.SetActive(true);
+                shoes3.SetActive(false);
+                shoes2_texture = 8;
+                shoes2.GetComponent<Renderer>().materials[0].mainTexture = shoes2_textures[shoes2_texture];
+                break;
+            }
+            case "T_shirt_h":
+            {   
+                jacket.SetActive(false);
+                pullover.SetActive(false);
+                shirt.SetActive(false);
+                t_shirt.SetActive(true);
+                tank_top.SetActive(false);
+                t_shirt_texture = 7;
+                t_shirt.GetComponent<Renderer>().materials[0].mainTexture = t_shirt_textures[t_shirt_texture];
+                break;
+            }
+            case "Trouser_e":
+            {   
+                shortpants.SetActive(true);
+                trousers.SetActive(false);
+                trouser_texture = 4;
+                trousers.GetComponent<Renderer>().materials[0].mainTexture = trousers_textures[trouser_texture]; // short pants texture
+                break;
+            }
+        }
+    }
+
 }
