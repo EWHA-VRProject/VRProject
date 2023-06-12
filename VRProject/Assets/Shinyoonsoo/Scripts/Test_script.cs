@@ -105,8 +105,9 @@ public class Test_script : MonoBehaviour
     }
 
 
-    IEnumerator stop_execute()
+    public IEnumerator stop_execute()
     {
+        print(11);
         yield return new WaitForSeconds(0);
 
         agent.speed = 0;

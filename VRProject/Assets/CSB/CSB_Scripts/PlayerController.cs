@@ -162,7 +162,14 @@ public class PlayerController : MonoBehaviour
             {
                 if(hitInfo.transform.CompareTag("Target") || hitInfo.transform.CompareTag("Answer"))
                 {
-                    // ∞®ø¡¿∏∑Œ
+                    isGrab = false;
+
+                    target = hitInfo.transform.gameObject;
+
+                    Test_script test = target.GetComponent<Test_script>();
+                    print(1);
+                    test.StartCoroutine(test.stop_execute());
+/*                    // ∞®ø¡¿∏∑Œ
                     isGrab = false;
                     target = hitInfo.transform.gameObject;
                     // ∏∏æ‡ ∞®ø¡¿Ã ¥Ÿ √°¿∏∏È "∞®ø¡¿Ã ¥Ÿ√°¿Ω" æÀ∑¡¡‹
@@ -179,7 +186,7 @@ public class PlayerController : MonoBehaviour
                         target.transform.position = prison.transform.GetChild(index).position;
                         //target.SetActive(false);    // ∫Ò»∞º∫»≠
                         print("¿‚æ“¥Ÿ ø‰≥");
-                    }
+                    }*/
                 }
                 else
                 {
