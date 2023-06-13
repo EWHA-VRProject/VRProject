@@ -288,6 +288,17 @@ public static class VRInput
                 crosshair.localScale = defaultScale * Mathf.Max(1, distance);
 
             }
+            else
+            {
+                crosshair.position = ray.origin + ray.direction * 100;
+                crosshair.forward = -Camera.main.transform.forward;
+                distance = (crosshair.position - ray.origin).magnitude;
+                crosshair.localScale = defaultScale * Mathf.Max(1, distance);
+            }
+        }
+        else
+        {
+            ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         }
     }
 
@@ -325,6 +336,13 @@ public static class VRInput
         OVRInput.SetControllerVibration(0, 0, (OVRInput.Controller)hand);
     }
 #endif
+
+    public static void Recenter()
+    {
+#if Oculus
+        OVRManager.display.RecenterPose();
+#endif
+    }
 }
 
 // 진동을 위한 코루틴 객체
