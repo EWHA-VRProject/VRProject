@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -20,12 +19,14 @@ public class GameManager : MonoBehaviour
     public bool foundAll;
     public bool isPlaying;
     public int maxPlayTime;
+    public int score;
 
     public GameObject startPanel;
     public GameObject gamePanel;
     public GameObject successPanel;
     public GameObject failPanel;
     public GameObject inventoryPanel;
+    public GameObject rankingPanel;
     public TMP_Text stageTxt;
     public TMP_Text playTimeTxt;
     public GameObject targetBtn1;
@@ -34,21 +35,27 @@ public class GameManager : MonoBehaviour
     public Image targetImg1;
     // public Image targetImg2;
     // public Image targetImg3;
+    public TMP_Text[] scores = new TMP_Text[3];
+    public TMP_Text nowscore;
     
-/*    public GameObject answer_target1;
+    public GameObject answer_target1;
     public GameObject answer_target2;
-    public GameObject answer_target3;*/
+    public GameObject answer_target3;
     
     
+
     private bool toggle1 =false;
     // private bool toggle2 =false;
     // private bool toggle3 =false;
     private bool toggle4=false;
+    private bool toggle5 = false;
 
 
     public TMP_Text playTimeResultTxt;
 
     public Sprite[] images;
+    public int[] bestScore = new int[3];
+    public string[] bestTime = new string[3];
 
     void Awake(){
 
@@ -63,6 +70,7 @@ public class GameManager : MonoBehaviour
         successPanel.SetActive(false);
         failPanel.SetActive(false);
         inventoryPanel.SetActive(false);
+        rankingPanel.SetActive(false);
         targetImg1.gameObject.SetActive(false);
         // targetImg2.gameObject.SetActive(false);
         // targetImg3.gameObject.SetActive(false);
@@ -71,7 +79,6 @@ public class GameManager : MonoBehaviour
         // toggle3=false;
         toggle4=false;
         isPlaying=true;
-
 
         List<int> numbersList = new List<int>();
 
@@ -85,18 +92,18 @@ public class GameManager : MonoBehaviour
                 maxPlayTime=500;
                 targetImg1.sprite = images[0];
                 //뒤에 안보이게 타겟 생성해놓음
-/*                answer_target1.SetActive(true);
+                answer_target1.SetActive(true);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(false);*/
+                answer_target3.SetActive(false);
                 
             }
             else{ // stage 2
                 maxPlayTime=400;
                 targetImg1.sprite = images[1];
 
-/*                answer_target1.SetActive(false);
+                answer_target1.SetActive(false);
                 answer_target2.SetActive(true);
-                answer_target3.SetActive(false);*/
+                answer_target3.SetActive(false);
             }
         }
         else if(stage<=4){
@@ -105,18 +112,18 @@ public class GameManager : MonoBehaviour
                 targetImg1.sprite = images[2];
 
 
-/*                answer_target1.SetActive(false);
+                answer_target1.SetActive(false);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(true);*/
+                answer_target3.SetActive(true);
             }
             else{ // stage 4
                 maxPlayTime=200;
                 targetImg1.sprite = images[0];
 
 
-/*                answer_target1.SetActive(true);
+                answer_target1.SetActive(true);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(false);*/
+                answer_target3.SetActive(false);
             }
         }
         else{ // stage 5
@@ -124,9 +131,9 @@ public class GameManager : MonoBehaviour
             targetImg1.sprite = images[1];
 
 
-/*                answer_target1.SetActive(false);
+                answer_target1.SetActive(false);
                 answer_target2.SetActive(true);
-                answer_target3.SetActive(false);*/
+                answer_target3.SetActive(false);
         }
 
         
@@ -165,15 +172,14 @@ public class GameManager : MonoBehaviour
         // }
         
     }
-    Scene scene;
-    int currSceneIndex;
-    int nextSceneIndex;
+    
     void Start() {
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
         inventoryPanel.SetActive(false);
+        rankingPanel.SetActive(false);
         targetImg1.gameObject.SetActive(false);
         // targetImg2.gameObject.SetActive(false);
         // targetImg3.gameObject.SetActive(false);
@@ -181,9 +187,8 @@ public class GameManager : MonoBehaviour
         // toggle2 =false;
         // toggle3 =false;
         toggle4=false;
-        scene = SceneManager.GetActiveScene();
-        currSceneIndex = scene.buildIndex;
-        nextSceneIndex = currSceneIndex + 1;
+        score =0;
+
     }
 
     void Update(){
@@ -204,6 +209,7 @@ public class GameManager : MonoBehaviour
             int min=(int)(playTime-hour*3600)/60;
             int second=(int)(playTime%60);
             playTimeResultTxt.text=string.Format("{0:00}", min)+":"+string.Format("{0:00}", second);
+            score = score + (int)(500 - playTime) + stage*100;
             foundAll=false;
         }
     }
@@ -221,11 +227,10 @@ public class GameManager : MonoBehaviour
         
     }
     public void nextButton(){
-        SceneManager.LoadScene(nextSceneIndex);
-/*        if(stage<5){
+        if(stage<5){
             stage+=1;
         }
-        GameStart();*/
+        GameStart();
         
     }
     public void ShowTarget1(){
@@ -282,6 +287,59 @@ public class GameManager : MonoBehaviour
             toggle4=false;
         }
     }
-    
 
+    public void ScoreSet(){
+        rankingPanel.SetActive(true); 
+        toggle5 = true;
+        // scores 저장
+        string currentTime = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+        int currentScore = score;
+        int tmpScore = 0;
+        string tmpTime= "";
+
+        for(int i=0; i<3; i++){
+            bestScore[i] = PlayerPrefs.GetInt(i+"BestScore");
+            bestTime[i] = PlayerPrefs.GetString(i+"BestTime");
+
+            while (bestScore[i] < currentScore)
+            {
+                tmpScore = bestScore[i];
+                tmpTime = bestTime[i];
+                bestScore[i] = currentScore;
+                bestTime[i] = currentTime;
+
+                PlayerPrefs.SetInt(i+"BestScore", currentScore);
+                PlayerPrefs.SetString(i+"BestTime", currentTime);
+
+                currentScore = tmpScore;
+                currentTime = tmpTime;
+            }
+        }
+        for(int i=0 ; i<3; i++){
+            PlayerPrefs.SetInt(i+"BestScore", bestScore[i]);
+            PlayerPrefs.SetString(i+"BestTime", bestTime[i]);
+        }
+        
+        //scores 보여주기
+        nowscore.text = currentTime + "                          " + currentScore.ToString();
+        for(int i = 0; i<3; i++)
+        {
+            scores[i].text = PlayerPrefs.GetInt(i+"BestScore") + "                          " + PlayerPrefs.GetString(i+"BestTime");
+            
+            if(nowscore.text == scores[i].text){
+                Color Rank = new Color (255,0,0);
+                scores[i].color = Rank;
+            }        
+        }
+
+        
+
+
+    }
+
+    public void ExitRankingPanel(){
+            successPanel.SetActive(true);
+            rankingPanel.SetActive(false);
+            
+    }
 }
