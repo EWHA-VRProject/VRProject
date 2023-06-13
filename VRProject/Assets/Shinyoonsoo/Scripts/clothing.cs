@@ -649,7 +649,7 @@ public class clothing : MonoBehaviour
             {   
                 shortpants.SetActive(true);
                 trousers.SetActive(false);
-                shortpants_texture = 4;
+                shortpants_texture = 8;
                 shortpants.GetComponent<Renderer>().materials[0].mainTexture = shortpants_textures[8]; // short pants texture
                 break;
             }
