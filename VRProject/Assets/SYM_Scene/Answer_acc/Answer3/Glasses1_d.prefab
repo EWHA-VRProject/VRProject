@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1839116933052601076}
   - component: {fileID: 3157775089297036026}
   m_Layer: 0
-  m_Name: Glasses1_a
+  m_Name: Glasses1_d
   m_TagString: glasses1_a
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2396851811782883069}
   m_LocalRotation: {x: -0.62026536, y: 0.33897048, z: 0.3392214, w: 0.62072444}
   m_LocalPosition: {x: -3.0923743, y: -0.12395441, z: 1.6092695}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 194.7837, y: 194.7837, z: 194.7837}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd08c4a901b9a14458adc3ea79a82b96, type: 2}
+  - {fileID: 2100000, guid: 682ba883644a810448285b8b37adb0d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

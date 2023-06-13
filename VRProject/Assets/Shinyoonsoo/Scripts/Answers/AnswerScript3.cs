@@ -31,7 +31,7 @@ public class AnswerScript3 : MonoBehaviour
 
     // 정답 체크를 위한 int 변수들 - 옷가지의 종류를 나타냄
     //skincolor
-    int skin_color = 2;
+    int skin_color = 0;
 
     //malefemale
     int male_female = 1;

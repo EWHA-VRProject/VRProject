@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2867713081063971198}
   - component: {fileID: 1458925990106405082}
   - component: {fileID: 6891525639629947294}
-  - component: {fileID: -6732959491607891022}
+  - component: {fileID: 3760819608246699902}
   m_Layer: 0
   m_Name: Chain1_d
   m_TagString: chain1_d
@@ -130,7 +130,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.002203037, y: 0.0011694374, z: 0.0017875596}
   m_Center: {x: -0.0000383116, y: 0.000002253582, z: -0.000922249}
---- !u!114 &-6732959491607891022
+--- !u!114 &3760819608246699902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,11 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4415263705005589778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Script: {fileID: 11500000, guid: b940bf47d1aa64e8692b5731f8b6cc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
+  item: {fileID: 11400000, guid: f940d634507ec490b90b666297a2af29, type: 2}

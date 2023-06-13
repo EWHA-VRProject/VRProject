@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1280867420184328771}
   - component: {fileID: 4304107657594874798}
   - component: {fileID: 4447138065339982091}
-  - component: {fileID: -3679730903686826984}
+  - component: {fileID: 2838177823291065212}
   m_Layer: 0
   m_Name: Pullover_p
   m_TagString: pullover_p
@@ -130,7 +130,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3679730903686826984
+--- !u!114 &2838177823291065212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,11 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5707227329866553292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Script: {fileID: 11500000, guid: b940bf47d1aa64e8692b5731f8b6cc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
+  item: {fileID: 11400000, guid: c00093e3fec1746c8bc15cc78561a6be, type: 2}

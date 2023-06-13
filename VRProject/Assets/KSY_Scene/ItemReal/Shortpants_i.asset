@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 6500183825899174667, guid: 7d27b9bf13b84428dbbcef9bb172bddb, type: 3}
   itemName: Shortpants_i
-  itemImage: {fileID: 21300000, guid: ab63dde9f60954d47b7305ba3b117a43, type: 3}
+  itemImage: {fileID: 21300000, guid: 735adecb687382047973813364877897, type: 3}
