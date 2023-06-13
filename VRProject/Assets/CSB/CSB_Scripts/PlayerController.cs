@@ -126,12 +126,12 @@ public class PlayerController : MonoBehaviour
         // ���� ���� ���� =========
         MakeAChoice();
 
-        if (!EventSystem.current.IsPointerOverGameObject())
+/*        if (!EventSystem.current.IsPointerOverGameObject())
         {
             GoTOThePrison();
-        }
+        }*/
 
-        CatchAnItem();
+        //CatchAnItem();
 /*        // ������ ��� ���� ============================================
         if (!isItem)    // ���� ���� ���� ���
         {
@@ -189,24 +189,6 @@ public class PlayerController : MonoBehaviour
                     }
                     test.playerTouched = true;
 
-/*                    // ��������
-                    isGrab = false;
-                    target = hitInfo.transform.gameObject;
-                    // ���� ������ �� á���� "������ ��á��" �˷���
-                    if (targets.Count >= 3)
-                    {
-                        print("���� ����");
-                    }
-                    else
-                    {
-                        targets.Add(target);    // ���� (Ÿ�� ����Ʈ)�� �߰�
-                        // ���� �߰��� ������ �ε��� == ����Ʈ�� ������ �ε���
-                        int index = targets.Count - 1;
-                        // �ڽ��� �ε����� �ش��ϴ� Prison ���ӿ�����Ʈ�� �ڽ� �ε����� ��ġ �̵�
-                        target.transform.position = prison.transform.GetChild(index).position;
-                        //target.SetActive(false);    // ��Ȱ��ȭ
-                        print("��Ҵ� ���");
-                    }*/
                 }
                 else
                 {
@@ -218,6 +200,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // ���� ���� ���� �Լ� (������ IndexTrigger) ================================
+    public GameObject gameManager;
     void MakeAChoice()
     {
         if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
@@ -233,12 +216,20 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (Transform child in answerChildren)
                 {
-                    isAnsList.Add(child.gameObject.activeSelf); // ������ �ڽĵ� bool �� (Ȱ��ȭ ����)
+                    if (child.gameObject.activeSelf)
+                    {
+                        isAnsList.Add(child.gameObject.activeSelf);
+                    }
+                    //isAnsList.Add(child.gameObject.activeSelf); // ������ �ڽĵ� bool �� (Ȱ��ȭ ����)
                 }
                 child = hitInfo.transform.GetComponentsInChildren<Transform>(true);  // ���� �ڽ� ������Ʈ ���
                 foreach (Transform child in child)
                 {
-                    isList.Add(child.gameObject.activeSelf);
+                    if (child.gameObject.activeSelf)
+                    {
+                        isList.Add(child.gameObject.activeSelf);
+                    }
+                    //isList.Add(child.gameObject.activeSelf);
                 }
 
                 // 
@@ -246,10 +237,6 @@ public class PlayerController : MonoBehaviour
                 if (hitInfo.transform.CompareTag("Answer")) // �±װ� "Answer"�̸�
                 {
                     Debug.Log("answer hhh");
-                }
-                else if(hitInfo.transform.CompareTag("Target"))
-                {
-                    Debug.Log("target hhh");
                 }
                 else if (isList.SequenceEqual(isAnsList))
                 {
@@ -275,14 +262,14 @@ public class PlayerController : MonoBehaviour
                     }
                     if(isAllTrue.All(element => element == true))
                     {
-                        print("������");
+                        print("성공");
+                        gameManager.GetComponent<GameManager>().foundAll = true;
                     }
-                    
-
                 }
             }
         }
     }
+
 
     // ���� �̵� ���� (���� Button.One) ===================
     public GameObject prisonPoint;

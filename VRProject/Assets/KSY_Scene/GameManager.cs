@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -34,9 +35,9 @@ public class GameManager : MonoBehaviour
     // public Image targetImg2;
     // public Image targetImg3;
     
-    public GameObject answer_target1;
+/*    public GameObject answer_target1;
     public GameObject answer_target2;
-    public GameObject answer_target3;
+    public GameObject answer_target3;*/
     
     
     private bool toggle1 =false;
@@ -84,18 +85,18 @@ public class GameManager : MonoBehaviour
                 maxPlayTime=500;
                 targetImg1.sprite = images[0];
                 //뒤에 안보이게 타겟 생성해놓음
-                answer_target1.SetActive(true);
+/*                answer_target1.SetActive(true);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(false);
+                answer_target3.SetActive(false);*/
                 
             }
             else{ // stage 2
                 maxPlayTime=400;
                 targetImg1.sprite = images[1];
 
-                answer_target1.SetActive(false);
+/*                answer_target1.SetActive(false);
                 answer_target2.SetActive(true);
-                answer_target3.SetActive(false);
+                answer_target3.SetActive(false);*/
             }
         }
         else if(stage<=4){
@@ -104,18 +105,18 @@ public class GameManager : MonoBehaviour
                 targetImg1.sprite = images[2];
 
 
-                answer_target1.SetActive(false);
+/*                answer_target1.SetActive(false);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(true);
+                answer_target3.SetActive(true);*/
             }
             else{ // stage 4
                 maxPlayTime=200;
                 targetImg1.sprite = images[0];
 
 
-                answer_target1.SetActive(true);
+/*                answer_target1.SetActive(true);
                 answer_target2.SetActive(false);
-                answer_target3.SetActive(false);
+                answer_target3.SetActive(false);*/
             }
         }
         else{ // stage 5
@@ -123,9 +124,9 @@ public class GameManager : MonoBehaviour
             targetImg1.sprite = images[1];
 
 
-                answer_target1.SetActive(false);
+/*                answer_target1.SetActive(false);
                 answer_target2.SetActive(true);
-                answer_target3.SetActive(false);
+                answer_target3.SetActive(false);*/
         }
 
         
@@ -164,7 +165,9 @@ public class GameManager : MonoBehaviour
         // }
         
     }
-    
+    Scene scene;
+    int currSceneIndex;
+    int nextSceneIndex;
     void Start() {
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
@@ -178,7 +181,9 @@ public class GameManager : MonoBehaviour
         // toggle2 =false;
         // toggle3 =false;
         toggle4=false;
-
+        scene = SceneManager.GetActiveScene();
+        currSceneIndex = scene.buildIndex;
+        nextSceneIndex = currSceneIndex + 1;
     }
 
     void Update(){
@@ -216,10 +221,11 @@ public class GameManager : MonoBehaviour
         
     }
     public void nextButton(){
-        if(stage<5){
+        SceneManager.LoadScene(nextSceneIndex);
+/*        if(stage<5){
             stage+=1;
         }
-        GameStart();
+        GameStart();*/
         
     }
     public void ShowTarget1(){
