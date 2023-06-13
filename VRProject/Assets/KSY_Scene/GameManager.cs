@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool foundAll;
     public bool isPlaying;
     public int maxPlayTime;
+    public int totalscore;
     public int score;
 
     public GameObject startPanel;
@@ -64,7 +65,9 @@ public class GameManager : MonoBehaviour
     public void GameStart(){
 
 
+        
         playTime=0;
+        score =0;
         startPanel.SetActive(false);
         gamePanel.SetActive(true);
         successPanel.SetActive(false);
@@ -188,6 +191,7 @@ public class GameManager : MonoBehaviour
         // toggle3 =false;
         toggle4=false;
         score =0;
+        totalscore= 0;
 
     }
 
@@ -209,8 +213,9 @@ public class GameManager : MonoBehaviour
             int min=(int)(playTime-hour*3600)/60;
             int second=(int)(playTime%60);
             playTimeResultTxt.text=string.Format("{0:00}", min)+":"+string.Format("{0:00}", second);
-            score = score + (int)(500 - playTime) + stage*100;
             foundAll=false;
+            score = score + (int)(500 - playTime) + stage*100;
+            totalscore = totalscore + score;
         }
     }
 
@@ -233,6 +238,7 @@ public class GameManager : MonoBehaviour
         GameStart();
         
     }
+
     public void ShowTarget1(){
         if(!toggle1){
             // toggle2=false;
@@ -290,10 +296,10 @@ public class GameManager : MonoBehaviour
 
     public void ScoreSet(){
         rankingPanel.SetActive(true); 
-        toggle5 = true;
         // scores 저장
         string currentTime = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-        int currentScore = score;
+        int currentScore = totalscore;
+        string savedTime = currentTime;
         int tmpScore = 0;
         string tmpTime= "";
 
@@ -321,25 +327,22 @@ public class GameManager : MonoBehaviour
         }
         
         //scores 보여주기
-        nowscore.text = currentTime + "                          " + currentScore.ToString();
+        nowscore.text = totalscore.ToString() + "                          " + savedTime ;
         for(int i = 0; i<3; i++)
         {
             scores[i].text = PlayerPrefs.GetInt(i+"BestScore") + "                          " + PlayerPrefs.GetString(i+"BestTime");
-            
+            Color initiate = new Color (0,0,0);
+            scores[i].color = initiate;
+
             if(nowscore.text == scores[i].text){
                 Color Rank = new Color (255,0,0);
                 scores[i].color = Rank;
             }        
         }
 
-        
-
-
     }
 
-    public void ExitRankingPanel(){
-            successPanel.SetActive(true);
-            rankingPanel.SetActive(false);
-            
+    public void initScore(){
+        totalscore = totalscore - score;
     }
 }
