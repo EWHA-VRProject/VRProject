@@ -308,7 +308,7 @@ public static class VRInput
     public static void PlayVibration(Controller hand)
     {
 #if Ouclus
-        PlayVibration(0.06f, 1, 1, hand);
+        PlayVibration(0.1f, 1, 1, hand);
 #endif
     }
 
