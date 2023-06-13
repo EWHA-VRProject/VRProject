@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 5498804203882314349, guid: 72918a0e8ef774196b2e485275a52f79, type: 3}
   itemName: Shirt_h
-  itemImage: {fileID: 21300000, guid: c54497f98180e4fa9bd3d6a12e116f93, type: 3}
+  itemImage: {fileID: 21300000, guid: 66e3836d063562942aa6bcad04a89d82, type: 3}

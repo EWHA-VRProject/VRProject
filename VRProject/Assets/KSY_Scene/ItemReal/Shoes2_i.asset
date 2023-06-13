@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 2942238529963369044, guid: 4485bca81410c4c7396e0ecbf09bbab5, type: 3}
   itemName: Shoes2_i
-  itemImage: {fileID: 21300000, guid: cda3ba8f13aed41d299bc722d1b1195f, type: 3}
+  itemImage: {fileID: 21300000, guid: 5ac67b4a5498b3144a2ef8ea3c156bc5, type: 3}
