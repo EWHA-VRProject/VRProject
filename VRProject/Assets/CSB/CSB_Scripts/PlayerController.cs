@@ -126,23 +126,8 @@ public class PlayerController : MonoBehaviour
         // ���� ���� ���� =========
         MakeAChoice();
 
-/*        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            GoTOThePrison();
-        }*/
+        CatchAnItem();
 
-        //CatchAnItem();
-/*        // ������ ��� ���� ============================================
-        if (!isItem)    // ���� ���� ���� ���
-        {
-            // ���
-            DragAnItem();
-        }
-        else
-        {
-            // ����
-            CatchAnItem();
-        }*/
 
     }
 
@@ -266,29 +251,6 @@ public class PlayerController : MonoBehaviour
                         gameManager.GetComponent<GameManager>().foundAll = true;
                     }
                 }
-            }
-        }
-    }
-
-
-    // ���� �̵� ���� (���� Button.One) ===================
-    public GameObject prisonPoint;
-    bool isPrison = false;
-    public GameObject returnPos;
-
-    void GoTOThePrison()
-    {
-        if(VRInput.GetDown(VRInput.Button.One, VRInput.Controller.LController))
-        {
-            if (!isPrison)
-            {
-                this.gameObject.transform.position = prisonPoint.transform.position;
-                isPrison = true;
-            }
-            else
-            {
-                this.gameObject.transform.position = returnPos.transform.position;
-                isPrison = false;
             }
         }
     }
