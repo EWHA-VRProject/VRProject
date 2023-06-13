@@ -310,10 +310,10 @@ public class PlayerController : MonoBehaviour
     void CatchAnItem()
     {
         // �ѹ� ������ ������ ȹ��
-        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
+        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
         {
-            VRInput.PlayVibration(VRInput.Controller.LController);
-            Ray ray = new Ray(VRInput.LHandPosition, VRInput.LHandDirection);    // ���� ���
+            VRInput.PlayVibration(VRInput.Controller.RController);
+            Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ���� ���
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))   // ���� ���̾ item�̸�
             {
@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.LController))
+        if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
         {
                     // isItem = false;
                     // item.GetComponent<Rigidbody>().isKinematic = false;

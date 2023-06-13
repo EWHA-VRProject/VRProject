@@ -533,18 +533,7 @@ public class clothing : MonoBehaviour
             shoes3.GetComponent<Renderer>().materials[0].mainTexture = shoes3_textures[shoes3_texture];
 
         }
-
-        int scarfPercentage = UnityEngine.Random.Range(0, 100);
-
-        if(scarfPercentage < 20)
-        {
-            scarf.SetActive(true);
-
-            scarf_texture = UnityEngine.Random.Range(0, 11);
-
-            scarf.GetComponent<Renderer>().materials[0].mainTexture = scarf_textures[scarf_texture];
-        }
-
+        
         which_trouser = UnityEngine.Random.Range(0, 2);
 
         // trousers
