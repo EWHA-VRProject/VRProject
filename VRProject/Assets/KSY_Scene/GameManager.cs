@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public GameObject answer_target1;
     public GameObject answer_target2;
     public GameObject answer_target3;
+
+    public Inventory inv;
     
     
 
@@ -178,6 +180,7 @@ public class GameManager : MonoBehaviour
     }
     
     void Start() {
+        inv=GameObject.FindGameObjectWithTag("invM").GetComponent<Inventory>();
         startPanel.SetActive(true);
         gamePanel.SetActive(false);
         successPanel.SetActive(false);
@@ -199,12 +202,29 @@ public class GameManager : MonoBehaviour
     void Update(){
         /*if (VRInput.GetDown(VRInput.Button.Three, VRInput.Controller.LController))
         {
-            GameStart();
-            inventory 호출해서 deleteall
+            if(startPanel.IsActive()){
+                GameStart();
+                inv.DeleteAll();
+                showInventory();
+            }
+            else if(gamePanel.IsActive()){
+                ShowTarget1();
+            }
+            else if(failPanel.IsActive(){
+                nextButton();
+            }
+            else if(successPanel.IsActive()){
+                nextButton();
+            }
         }
         if (VRInput.GetDown(VRInput.Button.Four, VRInput.Controller.LController))
         {
-            
+            if(gamePanel.IsActive()){
+                inv.ClickSlot1();
+            }
+            else if(successPanel.IsActive()){
+                ScoreSet();
+            }
         }*/
         if (isPlaying){
             playTime+=Time.deltaTime;
