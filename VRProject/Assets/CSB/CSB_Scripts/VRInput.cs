@@ -30,9 +30,9 @@ public static class VRInput
 #elif Oculus
         One = OVRInput.Button.One,
         Two = OVRInput.Button.Two,
-        Thumbstick = OVRInput.Button.PrimaryThumbstick,
-        IndexTrigger = OVRInput.Button.PrimaryIndexTrigger,
-        HandTrigger = OVRInput.Button.PrimaryHandTrigger,
+        Thumbstick = OVRInput.Button.SecondaryThumbstick,
+        IndexTrigger = OVRInput.Button.SecondaryIndexTrigger,
+        HandTrigger = OVRInput.Button.SecondaryHandTrigger,
 #endif
     }
 

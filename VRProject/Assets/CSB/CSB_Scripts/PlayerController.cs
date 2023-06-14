@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gameManager;
     void MakeAChoice()
     {
-        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
+        if(VRInput.GetDown(VRInput.Button.HandTrigger, VRInput.Controller.RController))
         {
             VRInput.PlayVibration(VRInput.Controller.RController);
             child.Initialize();
