@@ -197,7 +197,16 @@ public class GameManager : MonoBehaviour
     }
 
     void Update(){
-        if(isPlaying){
+        /*if (VRInput.GetDown(VRInput.Button.Three, VRInput.Controller.LController))
+        {
+            GameStart();
+            inventory 호출해서 deleteall
+        }
+        if (VRInput.GetDown(VRInput.Button.Four, VRInput.Controller.LController))
+        {
+            
+        }*/
+        if (isPlaying){
             playTime+=Time.deltaTime;
         }
         if(isPlaying && playTime>=maxPlayTime){

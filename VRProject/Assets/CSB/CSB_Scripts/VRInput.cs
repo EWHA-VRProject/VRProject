@@ -26,6 +26,7 @@ public static class VRInput
         Thumbstick = ButtonController.Fire1,
         IndexTrigger = ButtonController.Fire3,
         HandTrigger = ButtonController.Fire2,
+        //Three = ButtonController.
 
 #elif Oculus
         One = OVRInput.Button.One,
@@ -33,6 +34,8 @@ public static class VRInput
         Thumbstick = OVRInput.Button.SecondaryThumbstick,
         IndexTrigger = OVRInput.Button.SecondaryIndexTrigger,
         HandTrigger = OVRInput.Button.SecondaryHandTrigger,
+        Three = OVRInput.Button.Three,  //Left
+        Four = OVRInput.Button.Four,
 #endif
     }
 
