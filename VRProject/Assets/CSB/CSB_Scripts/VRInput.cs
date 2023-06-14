@@ -1,151 +1,75 @@
-#define PC
+ï»¿//#define PC
 #define Oculus
+//#define Vive
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if Vive
+using Valve.VR;
+using UnityEngine.XR;
+#endif
 
-// PC, Oculus È¯°æ ¸ðµÎ Àû¿ëÇÏ±âÀ§ÇÔ
 public static class VRInput
 {
-    // ÇÏ³ªÀÇ ¸í·É¾î·Î PC, Oculus È¯°æ ¸ðµÎ »ç¿ëÇÏ±â À§ÇØ ÅëÀÏ
 #if PC
-    public enum ButtonController
+    public enum ButtonTarget
     {
         Fire1,
         Fire2,
-        Fire3, 
+        Fire3,
+        Jump,
+    }
+#elif Vive
+    public enum ButtonTarget
+    {
+        Teleport,
+        InteractUI,
+        GrabGrip,
         Jump,
     }
 #endif
+
     public enum Button
     {
 #if PC
-        One = ButtonController.Fire1,
-        Two = ButtonController.Jump,
-        Thumbstick = ButtonController.Fire1,
-        IndexTrigger = ButtonController.Fire3,
-        HandTrigger = ButtonController.Fire2,
-
+        One = ButtonTarget.Fire1,
+        Two = ButtonTarget.Jump,
+        Thumbstick = ButtonTarget.Fire1,
+        IndexTrigger = ButtonTarget.Fire3,
+        HandTrigger = ButtonTarget.Fire2
 #elif Oculus
         One = OVRInput.Button.One,
         Two = OVRInput.Button.Two,
-        Thumbstick = OVRInput.Button.SecondaryThumbstick,
+        Thumbstick = OVRInput.Button.PrimaryThumbstick,
         IndexTrigger = OVRInput.Button.SecondaryIndexTrigger,
-        HandTrigger = OVRInput.Button.SecondaryHandTrigger,
+        HandTrigger = OVRInput.Button.SecondaryHandTrigger
+#elif Vive
+        One = ButtonTarget.InteractUI,
+        Two = ButtonTarget.Jump,
+        Thumbstick = ButtonTarget.Teleport,
+        IndexTrigger = ButtonTarget.InteractUI,
+        HandTrigger = ButtonTarget.GrabGrip,
 #endif
     }
 
-    // ÄÁÆ®·Ñ·¯ Á¾·ù (¿ÞÂÊ, ¿À¸¥ÂÊ ±¸º°)
     public enum Controller
     {
 #if PC
-        RController,
-        LController,
-
+        LTouch,
+        RTouch
 #elif Oculus
-        RController = OVRInput.Controller.RTouch,
-        LController = OVRInput.Controller.LTouch,
+        LTouch = OVRInput.Controller.LTouch,
+        RTouch = OVRInput.Controller.RTouch
+#elif Vive
+        LTouch = SteamVR_Input_Sources.LeftHand,
+        RTouch = SteamVR_Input_Sources.RightHand,
 #endif
     }
 
-    // Oculus ÀÏ ¶§
-#if Oculus
-    static Transform transform;
-#endif
-
-#if Oculus
-    static Transform GetTransform()
-    {
-        if(transform == null)
-        {
-            transform = GameObject.Find("TrackingSpace").transform;
-        }
-        return transform;
-    }
-#endif
-
-    // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ À§Ä¡ ¾ò¾î¿À±â
-    public static Vector3 RHandPosition
-    {
-        get
-        {
-#if PC
-            // ¸¶¿ì½ºÀÇ ½ºÅ©¸° ÁÂÇ¥
-            Vector3 pos = Input.mousePosition;
-            pos.z = 0.7f;
-            pos = Camera.main.ScreenToWorldPoint(pos); // ½ºÅ©¸° ÁÂÇ¥¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
-            RHand.position = pos;
-            return pos;
-#elif Oculus
-            Vector3 pos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
-            pos = GetTransform().TransformPoint(pos);
-            return pos;
-#endif
-        }
-    }
-
-    // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ ¹æÇâ ¾ò¾î¿À±â
-    public static Vector3 RHandDirection
-    {
-        get
-        {
-#if PC
-            Vector3 dir = RHandPosition - Camera.main.transform.position;   // Ä«¸Þ¶ó¿¡¼­ RHand ÇâÇÏ´Â ¹æÇâ
-            RHand.forward = dir;
-            return dir;
-
-#elif Oculus
-            Vector3 dir = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch) * Vector3.forward;
-            dir = GetTransform().TransformDirection(dir);
-            return dir;
-
-#endif
-        }
-    }
-
-    // ¿ÞÂÊ ÄÁÆ®·Ñ·¯ À§Ä¡ ¾ò¾î¿À±â
-    public static Vector3 LHandPosition
-    {
-        get
-        {
-#if PC
-            // ¸¶¿ì½ºÀÇ ½ºÅ©¸° ÁÂÇ¥
-            Vector3 pos = Input.mousePosition;
-            pos.z = 0.7f;
-            pos = Camera.main.ScreenToWorldPoint(pos); // ½ºÅ©¸° ÁÂÇ¥¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
-            LHand.position = pos;
-            return pos;
-
-#elif Oculus
-            Vector3 pos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
-            pos = GetTransform().TransformPoint(pos);
-            return pos;
-#endif
-        }
-    }
-
-    // ¿ÞÂÊ ÄÁÆ®·Ñ·¯ ¹æÇâ ¾ò¾î¿À±â
-    public static Vector3 LHandDirection
-    {
-        get
-        {
-#if PC
-            Vector3 dir = LHandPosition - Camera.main.transform.position;   // Ä«¸Þ¶ó¿¡¼­ RHand ÇâÇÏ´Â ¹æÇâ
-            LHand.forward = dir;
-            return dir;
-
-#elif Oculus
-            Vector3 dir = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch) * Vector3.forward;
-            dir = GetTransform().TransformDirection(dir);
-            return dir;
-#endif
-        }
-    }
-
-    // ¿ÞÂÊ ÄÁÆ®·Ñ·¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
     static Transform lHand;
-    // ¾À¿¡ µî·ÏµÈ ¿ÞÂÊ ÄÁÆ®·Ñ·¯ Ã£¾Æ ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½È¯
     public static Transform LHand
     {
         get
@@ -153,86 +77,201 @@ public static class VRInput
             if (lHand == null)
             {
 #if PC
-                // LHand¶ó´Â ÀÌ¸§À¸·Î °ÔÀÓ ¿ÀºêÁ§Æ® »ý¼º
+                // LHandï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
                 GameObject handObj = new GameObject("LHand");
-                // ¸¸µé¾îÁø °´Ã¼ÀÇ Æ®·£½ºÆûÀ» lHand¿¡ ÇÒ´ç
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ lHandï¿½ï¿½ ï¿½Ò´ï¿½
                 lHand = handObj.transform;
-                // ÄÁÆ®·Ñ·¯¸¦ Ä«¸Þ¶óÀÇ ÀÚ½Ä °´Ã¼·Î µî·Ï
+                // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
                 lHand.parent = Camera.main.transform;
-
 #elif Oculus
                 lHand = GameObject.Find("LeftControllerAnchor").transform;
+#elif Vive
+                lHand = GameObject.Find("Controller(left)").transform;
 #endif
             }
             return lHand;
         }
     }
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
 
-    // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯
     static Transform rHand;
-    // ¾À¿¡ µî·ÏµÈ ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ Ã£¾Æ ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½È¯
     public static Transform RHand
     {
         get
         {
+            // ï¿½ï¿½ï¿½ï¿½ rHandï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (rHand == null)
             {
 #if PC
-                // RHand¶ó´Â ÀÌ¸§À¸·Î °ÔÀÓ ¿ÀºêÁ§Æ® »ý¼º
+                // RHand ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
                 GameObject handObj = new GameObject("RHand");
-                // ¸¸µé¾îÁø °´Ã¼ÀÇ Æ®·£½ºÆûÀ» lHand¿¡ ÇÒ´ç
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ rHandï¿½ï¿½ ï¿½Ò´ï¿½
                 rHand = handObj.transform;
-                // ÄÁÆ®·Ñ·¯¸¦ Ä«¸Þ¶óÀÇ ÀÚ½Ä °´Ã¼·Î µî·Ï
+                // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
                 rHand.parent = Camera.main.transform;
-#elif Oculus
-                rHand = GameObject.Find("RightControllerAnchor").transform;
 #endif
             }
             return rHand;
         }
     }
 
-    // ======= ¹öÆ° ÀÔ·Â °ü·Ã ==============
-    // ¹öÆ° ´©¸£´Â Áß
-    public static bool Get(Button input, Controller hand = Controller.RController)
+    public static Vector3 RHandPosition
+    {
+        get
+        {
+#if PC
+            // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Vector3 pos = Input.mousePosition;
+            // z ï¿½ï¿½ï¿½ï¿½ 0.7mï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            pos.z = 0.7f;
+            // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
+            pos = Camera.main.ScreenToWorldPoint(pos);
+
+            RHand.position = pos;
+            return pos;
+#elif Oculus
+            Vector3 pos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
+            pos = GetTransform().TransformPoint(pos);
+            return pos;
+#elif Vive
+            Vector3 pos = RHand.position;
+            return pos;
+#endif
+        }
+    }
+
+    public static Vector3 RHandDirection
+    {
+        get
+        {
+#if PC
+            Vector3 direction = RHandPosition - Camera.main.transform.position;
+
+            RHand.forward = direction;
+            return direction;
+#elif Oculus
+
+            Vector3 direction = OVRInput.GetLocalControllerRotation(OVRInput.Controller.
+            RTouch) * Vector3.forward;
+            direction = GetTransform().TransformDirection(direction);
+
+            return direction;
+#elif Vive
+            Vector3 direction = RHand.forward;
+            return direction;
+#endif
+        }
+    }
+
+    public static Vector3 LHandPosition
+    {
+        get
+        {
+#if PC
+            return RHandPosition;
+#elif Oculus
+            Vector3 pos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
+            pos = GetTransform().TransformPoint(pos);
+            return pos;
+#elif Vive
+            Vector3 pos = LHand.position;
+            return pos;
+#endif
+        }
+    }
+
+    public static Vector3 LHandDirection
+    {
+        get
+        {
+#if PC
+            return RHandDirection;
+#elif Oculus
+            Vector3 direction = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch) * Vector3.forward;
+            direction = GetTransform().TransformDirection(direction);
+
+            return direction;
+#elif Vive
+            Vector3 direction = LHand.forward;
+            return direction;
+#endif
+        }
+    }
+
+#if Oculus || Vive
+    static Transform rootTransform;
+#endif
+
+#if Oculus
+    static Transform GetTransform()
+    {
+        if (rootTransform == null)
+        {
+            rootTransform = GameObject.Find("TrackingSpace").transform;
+        }
+        return rootTransform;
+    }
+#elif Vive
+    static Transform GetTransform()
+    {
+        if (rootTransform == null)
+        {
+
+            rootTransform = GameObject.Find("[CameraRig]").transform;
+        }
+        return rootTransform;
+    }
+#endif
+
+    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½È¯
+    public static bool Get(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
-        return Input.GetButton(((ButtonController)input).ToString());
-
+        // virtualMaskï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ButtonTarget Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        return Input.GetButton(((ButtonTarget)virtualMask).ToString());
 #elif Oculus
-        return OVRInput.Get((OVRInput.Button)input, (OVRInput.Controller)hand);
+        return OVRInput.Get((OVRInput.Button)virtualMask, (OVRInput.Controller)hand);
+#elif Vive
+        string button = ((ButtonTarget)virtualMask).ToString();
+        return SteamVR_Input.GetState(button, (SteamVR_Input_Sources)(hand));
 #endif
     }
 
-    // ¹öÆ° ´©¸¦ ‹š
-    public static bool GetDown(Button input, Controller hand = Controller.RController)
+    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½È¯
+    public static bool GetDown(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
-        return Input.GetButtonDown(((ButtonController)input).ToString());
+        return Input.GetButtonDown(((ButtonTarget)virtualMask).ToString());
 #elif Oculus
-        return OVRInput.GetDown((OVRInput.Button)input, (OVRInput.Controller)hand);
+        return OVRInput.GetDown((OVRInput.Button)virtualMask, (OVRInput.Controller)hand);
+#elif Vive
+        string button = ((ButtonTarget)virtualMask).ToString();
+        return SteamVR_Input.GetStateDown(button, (SteamVR_Input_Sources)(hand));
 #endif
     }
 
-    // ¹öÆ° ¶¿ ¶§
-    public static bool GetUp(Button input, Controller hand = Controller.RController)
+    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½È¯
+    public static bool GetUp(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
-        return Input.GetButtonUp(((ButtonController)input).ToString());
+        return Input.GetButtonUp(((ButtonTarget)virtualMask).ToString());
 #elif Oculus
-        return OVRInput.GetUp((OVRInput.Button)input, (OVRInput.Controller)hand);
+        return OVRInput.GetUp((OVRInput.Button)virtualMask, (OVRInput.Controller)hand);
+#elif Vive
+        string button = ((ButtonTarget)virtualMask).ToString();
+        return SteamVR_Input.GetStateUp(button, (SteamVR_Input_Sources)(hand));
 #endif
     }
 
-    // Thumbstick °ü·Ã
-    // ÄÁÆ®·Ñ·¯ÀÇ axis ÀÔ·Â
-    public static float GetAxis(string axis, Controller hand = Controller.LController)
+    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Axis ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+    // axis: Horizontal, Vertical ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
+    public static float GetAxis(string axis, Controller hand = Controller.LTouch)
     {
 #if PC
         return Input.GetAxis(axis);
-
 #elif Oculus
-        if(axis == "Horizontal")
+        if (axis == "Horizontal")
         {
             return OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, (OVRInput.Controller)hand).x;
         }
@@ -240,69 +279,29 @@ public static class VRInput
         {
             return OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, (OVRInput.Controller)hand).y;
         }
+#elif Vive
+        if (axis == "Horizontal")
+        {
+            return SteamVR_Input.GetVector2("TouchPad", (SteamVR_Input_Sources)(hand)).x;
+        }
+else
+        {
+            return SteamVR_Input.GetVector2("TouchPad", (SteamVR_Input_Sources)(hand)).y;
+        }
 #endif
     }
 
-    // ÃÊ±â ¿ùµå¿¡¼­ »ç¿ëÀÚÀÇ ¹æÇâ, Ä«¸Þ¶ó ±âÁØÀ¸·Î ¼³Á¤
-    public static void SetCenter()
+
+    // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï±ï¿½
+    public static void PlayVibration(Controller hand)
     {
 #if Oculus
-        OVRManager.display.RecenterPose();
+        PlayVibration(0.06f, 1, 1, hand);
+#elif Vive
+        PlayVibration(0.06f, 160, 0.5f, hand);
 #endif
     }
 
-    // ·¹ÀÌÀú °ü·Ã. ÄÁÆ®·Ñ·¯ ¶Ç´Â ¸¶¿ì½º°¡ °¡¸®Å°´Â ¹æÇâ
-    // ray¸¦ ½î´Ù°¡ ¹°Ã¼¿¡ ¸ÂÀ¸¸é ¶óÀÎ·»´õ·¯(crosshair) ±×·ÁÁÖ±â
-#if PC
-    static Vector3 defaultScale = Vector3.one * 0.02f;
-#else
-    static Vector3 defaultScale = Vector3.one * 0.005f;
-#endif
-    public static void LaserPoint(Transform crosshair, bool isHand = true, Controller hand = Controller.RController)
-    {
-        Ray ray;
-        if(isHand)
-        {
-#if PC
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-#elif Oculus
-
-            if(hand == Controller.RController)
-            {
-                ray = new Ray(RHandPosition, RHandDirection);
-            }
-            else
-            {
-                ray = new Ray(LHandPosition, LHandDirection);
-            }
-#endif
-            Plane plane = new Plane(Vector3.up, 0);
-            float distance = 0;
-
-            if (plane.Raycast(ray, out distance))
-            {
-                // linerenderer ±×¸®±â
-                // crosshair
-                crosshair.position = ray.GetPoint(distance);
-                crosshair.forward = -Camera.main.transform.forward;
-                crosshair.localScale = defaultScale * Mathf.Max(1, distance);
-
-            }
-            else
-            {
-                crosshair.position = ray.origin + ray.direction * 100;
-                crosshair.forward = -Camera.main.transform.forward;
-                distance = (crosshair.position - ray.origin).magnitude;
-                crosshair.localScale = defaultScale * Mathf.Max(1, distance);
-            }
-        }
-        else
-        {
-            ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        }
-    }
-
-    // Áøµ¿ È£Ãâ
     public static void PlayVibration(float duration, float frequency, float amplitude, Controller hand)
     {
 #if Oculus
@@ -311,52 +310,125 @@ public static class VRInput
             GameObject coroutineObj = new GameObject("CoroutineInstance");
             coroutineObj.AddComponent<CoroutineInstance>();
         }
+
+        // ï¿½Ì¹ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         CoroutineInstance.coroutineInstance.StopAllCoroutines();
         CoroutineInstance.coroutineInstance.StartCoroutine(VibrationCoroutine(duration, frequency, amplitude, hand));
+#elif Vive
+        SteamVR_Actions._default.Haptic.Execute(0, duration, frequency, amplitude, (SteamVR_Input_Sources)hand);
 #endif
     }
 
-    public static void PlayVibration(Controller hand)
+
+    // Ä«ï¿½Þ¶ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Â´ï¿½.
+    public static void Recenter()
     {
 #if Oculus
-        PlayVibration(0.1f, 1, 1, hand);
+        OVRManager.display.RecenterPose();
+#elif Vive
+        List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
+        SubsystemManager.GetInstances<XRInputSubsystem>(subsystems);
+        for (int i = 0; i < subsystems.Count; i++)
+        {
+            subsystems[i].TrySetTrackingOriginMode(TrackingOriginModeFlags.
+            TrackingReference);
+            subsystems[i].TryRecenter();
+        }
 #endif
     }
+
+    // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public static void Recenter(Transform target, Vector3 direction)
+    {
+        target.forward = target.rotation * direction;
+    }
+
+
+#if PC
+    static Vector3 originScale = Vector3.one * 0.02f;
+#else
+    static Vector3 originScale = Vector3.one * 0.005f;
+#endif
+
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½Î½ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½Ä¡ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Í´ï¿½.
+    public static void DrawCrosshair(Transform crosshair, bool isHand = true, Controller hand = Controller.RTouch)
+    {
+
+        Ray ray;
+
+        // ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (isHand)
+        {
+#if PC
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+#else
+            if (hand == Controller.RTouch)
+            {
+                ray = new Ray(RHandPosition, RHandDirection);
+            }
+            else
+            {
+                ray = new Ray(LHandPosition, LHandDirection);
+            }
+#endif
+        }
+        else
+        {
+            // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+            ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        }
+
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Planeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+        Plane plane = new Plane(Vector3.up, 1);
+        float distance = 0;
+        // planeï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ rayï¿½ï¿½ ï¿½ï¿½ï¿½.
+        if (plane.Raycast(ray, out distance))
+        {
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GetPoint ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+            crosshair.position = ray.GetPoint(distance);
+            crosshair.forward = -Camera.main.transform.forward;
+            // Å©ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½Ö¼ï¿½ ï¿½âº» Å©ï¿½â¿¡ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+            crosshair.localScale = originScale * Mathf.Max(1, distance);
+        }
+        else
+        {
+            crosshair.position = ray.origin + ray.direction * 100;
+            crosshair.forward = -Camera.main.transform.forward;
+            distance = (crosshair.position - ray.origin).magnitude;
+            crosshair.localScale = originScale * Mathf.Max(1, distance);
+        }
+    }
+
 
 #if Oculus
     static IEnumerator VibrationCoroutine(float duration, float frequency, float amplitude, Controller hand)
     {
-        float currTime = 0;
-        while (currTime < duration)
+        float currentTime = 0;
+
+        while (currentTime < duration)
         {
-            currTime += Time.deltaTime;
-            OVRInput.SetControllerVibration(frequency, amplitude, (OVRInput.Controller)hand);
+
+            currentTime += Time.deltaTime;
+
+            OVRInput.SetControllerVibration(frequency, amplitude, (OVRInput.Controller)
+            hand);
             yield return null;
         }
         OVRInput.SetControllerVibration(0, 0, (OVRInput.Controller)hand);
     }
 #endif
-
-    public static void Recenter()
-    {
-#if Oculus
-        OVRManager.display.RecenterPose();
-#endif
-    }
 }
 
-// Áøµ¿À» À§ÇÑ ÄÚ·çÆ¾ °´Ã¼
+// ARAVRInput Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½Ã¼
 class CoroutineInstance : MonoBehaviour
 {
     public static CoroutineInstance coroutineInstance = null;
     private void Awake()
     {
-        if(coroutineInstance == null)
+        if (coroutineInstance == null)
         {
             coroutineInstance = this;
         }
         DontDestroyOnLoad(gameObject);
     }
 }
-
-

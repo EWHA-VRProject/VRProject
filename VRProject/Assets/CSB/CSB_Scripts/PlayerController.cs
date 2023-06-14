@@ -67,11 +67,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        VRInput.Recenter();
+      //  VRInput.SetCenter();
         pos = transform.position;
 
         // ������ �߻� ���� ======================================
         // �浹�� ��ü�� ������ ������ �߻� (�������� ���콺 �Ǵ� ��Ʈ�ѷ��� ����Ű�� �������� ����)
-        VRInput.LaserPoint(crosshair);
+        VRInput.DrawCrosshair(crosshair);
 
 
         // �����¿� �̵� ���� ==================================
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // ����, PC�� ��� �����̽� ��, Oculus�� ��� ������ Button.Two ���� ��ư Ŭ��
-        if(VRInput.GetDown(VRInput.Button.Two, VRInput.Controller.RController))
+        if(VRInput.GetDown(VRInput.Button.Two, VRInput.Controller.RTouch))
         {
             yVelocity = jumpPower;
         }
@@ -135,9 +137,9 @@ public class PlayerController : MonoBehaviour
     void UnGrab()
     {
         //
-        if(VRInput.GetUp(VRInput.Button.One, VRInput.Controller.RController))
+        if(VRInput.GetUp(VRInput.Button.One, VRInput.Controller.RTouch))
         {
-            VRInput.PlayVibration(VRInput.Controller.RController);
+            VRInput.PlayVibration(VRInput.Controller.RTouch);
             isGrab = false;
             target.GetComponent<Rigidbody>().isKinematic = false;
             target = null;
@@ -149,7 +151,7 @@ public class PlayerController : MonoBehaviour
     // - layer�� target�� ��� ��������, ���� ������ �� á���� ������ �� á�ٰ� �˷���
     void Grab()
     {
-        if (VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RController))
+        if (VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RTouch))
         {
             Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ���� ���
             RaycastHit hitInfo;
@@ -188,9 +190,9 @@ public class PlayerController : MonoBehaviour
     public GameObject gameManager;
     void MakeAChoice()
     {
-        if(VRInput.GetDown(VRInput.Button.HandTrigger, VRInput.Controller.RController))
+        if(VRInput.GetDown(VRInput.Button.Two, VRInput.Controller.RTouch))
         {
-            VRInput.PlayVibration(VRInput.Controller.RController);
+            VRInput.PlayVibration(VRInput.Controller.RTouch);
             child.Initialize();
             isAnsList.Clear();
             isList.Clear();
@@ -259,9 +261,9 @@ public class PlayerController : MonoBehaviour
     void CatchAnItem()
     {
         // �ѹ� ������ ������ ȹ��
-        if(VRInput.GetDown(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
+        if(VRInput.GetDown(VRInput.Button.One, VRInput.Controller.RTouch))
         {
-            VRInput.PlayVibration(VRInput.Controller.RController);
+            //VRInput.PlayVibration(VRInput.Controller.RTouch);
             Ray ray = new Ray(VRInput.RHandPosition, VRInput.RHandDirection);    // ���� ���
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))   // ���� ���̾ item�̸�
@@ -283,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.RController))
+        if (VRInput.GetUp(VRInput.Button.IndexTrigger, VRInput.Controller.RTouch))
         {
                     // isItem = false;
                     // item.GetComponent<Rigidbody>().isKinematic = false;
