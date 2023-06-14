@@ -114,7 +114,7 @@ public class Test_script : MonoBehaviour
         agent.speed = 0;
         ani.SetInteger("legs", 0);
         ani.SetInteger("arms", 0);
-        yield return new WaitForSeconds(10); //10초 동안 멈춰놓음
+        yield return new WaitForSeconds(60); //10초 동안 멈춰놓음
 
         playerTouched = false;        
         destermine_new_aim = false;
