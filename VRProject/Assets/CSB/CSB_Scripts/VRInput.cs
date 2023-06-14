@@ -16,6 +16,8 @@ public static class VRInput
         Fire2,
         Fire3, 
         Jump,
+        Cancel,
+        Enter,
     }
 #endif
     public enum Button
@@ -26,7 +28,8 @@ public static class VRInput
         Thumbstick = ButtonController.Fire1,
         IndexTrigger = ButtonController.Fire3,
         HandTrigger = ButtonController.Fire2,
-        //Three = ButtonController.
+        Three = ButtonController.Cancel,
+        Four = ButtonController.Enter,
 
 #elif Oculus
         One = OVRInput.Button.One,

@@ -200,32 +200,36 @@ public class GameManager : MonoBehaviour
     }
 
     void Update(){
-        /*if (VRInput.GetDown(VRInput.Button.Three, VRInput.Controller.LController))
+        if (VRInput.GetDown(VRInput.Button.Three, VRInput.Controller.LController))
         {
-            if(startPanel.IsActive()){
+            if(startPanel.activeSelf){
                 GameStart();
                 inv.DeleteAll();
                 showInventory();
             }
-            else if(gamePanel.IsActive()){
+            else if(gamePanel.activeSelf){
                 ShowTarget1();
             }
-            else if(failPanel.IsActive(){
+            else if(failPanel.activeSelf){
                 nextButton();
             }
-            else if(successPanel.IsActive()){
+            else if(successPanel.activeSelf){
                 nextButton();
             }
         }
+
+
         if (VRInput.GetDown(VRInput.Button.Four, VRInput.Controller.LController))
         {
-            if(gamePanel.IsActive()){
+            if (gamePanel.activeSelf)
+            {
                 inv.ClickSlot1();
             }
-            else if(successPanel.IsActive()){
+            else if (successPanel.activeSelf)
+            {
                 ScoreSet();
             }
-        }*/
+        }
         if (isPlaying){
             playTime+=Time.deltaTime;
         }
