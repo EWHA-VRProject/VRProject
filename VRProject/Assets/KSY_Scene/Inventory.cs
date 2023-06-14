@@ -35,13 +35,20 @@ public class Inventory : MonoBehaviour
     }
 
     public void AddItem(Item _item, Renderer itemRenderer) {
-        if (items.Count < slots.Length) {
-            items.Add(_item);
-            renderers.Add(itemRenderer);
-            FreshSlot();
-        } else {
-            print("슬롯이 가득 차 있습니다.");
+        if (!items.Contains(_item))
+        {
+            if (items.Count < slots.Length)
+            {
+                items.Add(_item);
+                renderers.Add(itemRenderer);
+                FreshSlot();
+            }
+            else
+            {
+                print("슬롯이 가득 차 있습니다.");
+            }
         }
+        
     }
     public void ClickSlot1(){
         Item _item=items[0];
