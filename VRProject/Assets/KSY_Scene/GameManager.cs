@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     public string[] bestTime = new string[3];
 
     void Awake(){
-
+        Cursor.visible=false;
     }
 
     public void GameStart(){
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         
         if(stage<=2){
             if(stage==1){ // stage 1
-                maxPlayTime=500;
+                maxPlayTime=700;
                 targetImg1.sprite = images[0];
                 //뒤에 안보이게 타겟 생성해놓음
                 answer_target1.SetActive(true);
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
                 
             }
             else{ // stage 2
-                maxPlayTime=400;
+                maxPlayTime=600;
                 targetImg1.sprite = images[1];
 
                 answer_target1.SetActive(false);
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
         }
         else if(stage<=4){
             if(stage==3){ // stage 3
-                maxPlayTime=300;
+                maxPlayTime=500;
                 targetImg1.sprite = images[2];
 
 
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
                 answer_target3.SetActive(true);
             }
             else{ // stage 4
-                maxPlayTime=200;
+                maxPlayTime=300;
                 targetImg1.sprite = images[0];
 
 
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
             }
         }
         else{ // stage 5
-            maxPlayTime=180;
+            maxPlayTime=150;
             targetImg1.sprite = images[1];
 
 
