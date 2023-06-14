@@ -318,7 +318,7 @@ public static class VRInput
 
     public static void PlayVibration(Controller hand)
     {
-#if Oculus
+#if Ouclus
         PlayVibration(0.1f, 1, 1, hand);
 #endif
     }
